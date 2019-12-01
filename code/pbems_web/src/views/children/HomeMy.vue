@@ -89,7 +89,7 @@ export default {
     logout() {
       let that = this;
       this.$post(this, "/logout", null, () => {
-        that.$router.push("/");
+        that.$router.replace("/");
       });
     }
   }
