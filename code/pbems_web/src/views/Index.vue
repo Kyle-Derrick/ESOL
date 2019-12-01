@@ -71,7 +71,7 @@ export default {
         "/login",
         this.$stringify(this.form),
         () => {
-          that.$router.push("/home/list");
+          that.$router.replace("/home/list");
         },
         null,
         () => {

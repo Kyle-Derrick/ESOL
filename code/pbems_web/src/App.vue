@@ -46,7 +46,7 @@ export default {
   methods: {
     changeHost() {
       this.$store.state.host = this.host;
-      this.$http.defaults.baseURL = this.host;
+      this.$http.defaults.baseURL = this.host + this.$store.state.path;
       this.show = false;
     },
     showPopup() {

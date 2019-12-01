@@ -34,35 +34,18 @@
             v-if="item.testNum !== 0"
             href="javascript:;"
             class="text-btn"
-            @click="showHistoryTest(item)"
+            @click="toHistoryTest(item)"
             ><span>查看详情</span></a
           >
         </div>
       </div>
     </div>
-    <!-- 弹出层,显示考试试卷列表 -->
-    <van-popup
-      v-model="show"
-      class="popup radius"
-      closeable
-      safe-area-inset-bottom
-      @closed="popupClosed"
-    >
-      <ExamResultHistory
-        :list="historyTestList"
-        :title="historyTestTitle"
-      ></ExamResultHistory>
-    </van-popup>
   </div>
 </template>
 
 <script>
-import ExamResultHistory from "@/components/ExamResultHistory.vue";
 export default {
   name: "homeList",
-  components: {
-    ExamResultHistory
-  },
   mounted() {
     let that = this;
     this.$store.state.nav.title = "历史考试";
@@ -73,32 +56,22 @@ export default {
   },
   data() {
     return {
-      // 显示弹出层
-      show: false,
       // 列表数组
-      listData: [],
-      // 传入答卷列表组件的数组数据
-      historyTestList: null,
-      // 传入答卷列表组件的标题
-      historyTestTitle: null
+      listData: []
     };
   },
   methods: {
-    // 显示答卷列表弹出层
-    showHistoryTest(item) {
+    // 跳转到答卷列表页面
+    toHistoryTest(item) {
       if (item.examId !== null) {
         let that = this;
         this.$get(this, "/exam/history/" + item.examId, data => {
-          that.historyTestList = data.data;
-          that.historyTestTitle = item.examTitle;
-          that.show = true;
+          that.$router.push({
+            name: "resultHistory",
+            params: { data: data.data, title: item.examTitle }
+          });
         });
       }
-    },
-    // 当弹出层关闭时,还原参数
-    popupClosed() {
-      this.historyTestList = null;
-      this.historyTestTitle = null;
     }
   }
 };
@@ -146,10 +119,6 @@ export default {
   display: block;
   height: 100%;
   color: #f99c0a;
-}
-.popup {
-  width: 95%;
-  background-color: #f4f4f4;
 }
 .van-tag {
   position: absolute;

@@ -9,7 +9,7 @@
             <van-image
               :src="ads.imgUrl"
               width="100%"
-              height="20%"
+              height="26vh"
               :title="ads.title"
             />
             <!-- <a href="https://www.baidu.com">
@@ -65,6 +65,9 @@ export default {
 .home-list-main-div {
   background-color: white;
   min-height: 100vh;
+}
+.home-list-swipe {
+  height: 26vh;
 }
 .home-list {
   /* padding: 1rem; */

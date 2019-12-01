@@ -5,6 +5,7 @@ let basePath = "/api";
  */
 export default {
   baseApiUrl,
+  basePath,
   proApiUrl: baseApiUrl + basePath,
   devApiUrl: basePath
 };

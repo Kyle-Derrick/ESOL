@@ -9,6 +9,7 @@ import qs from "qs";
 import { Notify } from "vant";
 import { Toast } from "vant";
 import "@/assets/js/setPrototype.js";
+// import mui from "/js/mui.min.js";
 
 Vue.config.productionTip = false;
 
@@ -22,6 +23,8 @@ Vue.prototype.$Notify = Notify;
 Vue.prototype.$Toast = Toast;
 
 Vue.prototype.$stringify = data => qs.stringify(data);
+
+Vue.prototype.$mui = mui;
 
 new Vue({
   router,

@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     host: config.baseApiUrl,
+    path: config.basePath,
     nav: {
       title: "",
       back: null,
