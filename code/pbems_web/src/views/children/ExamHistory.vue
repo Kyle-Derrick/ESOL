@@ -1,0 +1,161 @@
+<!-- 历史考试面 -->
+<template>
+  <div class="exam-history">
+    <div class="list-main-div">
+      <div
+        class="history-item radius shadow"
+        v-for="(item, i) in listData"
+        :key="i"
+      >
+        <!-- 若为缺考,显示缺考 -->
+        <h2>
+          {{ item.examTitle }} (总分:{{ item.totalSorce }})<van-tag
+            v-if="item.testNum === 0"
+            >缺考</van-tag
+          >
+        </h2>
+        <van-row gutter="4">
+          <van-col span="8">
+            <span
+              >剩余答题<span class="highlight_gary">{{ item.examResNum }}</span
+              >次</span
+            >
+          </van-col>
+          <van-col span="12">
+            <span
+              >最终得分<span class="highlight">{{ item.examSorce }}</span
+              >分</span
+            >
+          </van-col>
+        </van-row>
+        <div class="item-footer">
+          <span>最后一次答题日期：{{ item.examLastDate }}</span>
+          <a
+            v-if="item.testNum !== 0"
+            href="javascript:;"
+            class="text-btn"
+            @click="showHistoryTest(item)"
+            ><span>查看详情</span></a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- 弹出层,显示考试试卷列表 -->
+    <van-popup
+      v-model="show"
+      class="popup radius"
+      closeable
+      safe-area-inset-bottom
+      @closed="popupClosed"
+    >
+      <ExamResultHistory
+        :list="historyTestList"
+        :title="historyTestTitle"
+      ></ExamResultHistory>
+    </van-popup>
+  </div>
+</template>
+
+<script>
+import ExamResultHistory from "@/components/ExamResultHistory.vue";
+export default {
+  name: "homeList",
+  components: {
+    ExamResultHistory
+  },
+  mounted() {
+    let that = this;
+    this.$store.state.nav.title = "历史考试";
+    // 获取历史列表
+    this.$get(this, "/exam/history", data => {
+      that.listData = data.data.reverse();
+    });
+  },
+  data() {
+    return {
+      // 显示弹出层
+      show: false,
+      // 列表数组
+      listData: [],
+      // 传入答卷列表组件的数组数据
+      historyTestList: null,
+      // 传入答卷列表组件的标题
+      historyTestTitle: null
+    };
+  },
+  methods: {
+    // 显示答卷列表弹出层
+    showHistoryTest(item) {
+      if (item.examId !== null) {
+        let that = this;
+        this.$get(this, "/exam/history/" + item.examId, data => {
+          that.historyTestList = data.data;
+          that.historyTestTitle = item.examTitle;
+          that.show = true;
+        });
+      }
+    },
+    // 当弹出层关闭时,还原参数
+    popupClosed() {
+      this.historyTestList = null;
+      this.historyTestTitle = null;
+    }
+  }
+};
+</script>
+
+<style scoped>
+.exam-history {
+  min-height: 100vh;
+  background-color: #f4f4f4;
+}
+.list-main-div {
+  /* width: 95%; */
+  margin: auto;
+  text-align: left;
+  padding: 1rem;
+  padding-top: 2.875rem;
+}
+.history-item {
+  position: relative;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  margin-top: 1.2rem;
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+}
+.history-item h2 {
+  color: #444;
+  font-size: 0.875rem;
+}
+.history-item span {
+  margin-top: 0.3rem;
+}
+.history-item .item-footer {
+  margin-top: 0.5rem;
+  position: relative;
+}
+.history-item .item-footer > * {
+  vertical-align: middle;
+}
+.text-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: block;
+  height: 100%;
+  color: #f99c0a;
+}
+.popup {
+  width: 95%;
+  background-color: #f4f4f4;
+}
+.van-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 999px 0 0 999px;
+  padding-left: 0.6rem;
+}
+</style>
