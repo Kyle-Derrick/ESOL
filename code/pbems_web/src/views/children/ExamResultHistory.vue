@@ -1,72 +1,74 @@
 <!-- 历史考试结果列表组件 -->
 <template>
-  <div class="list">
-    <!-- 弹出框标题 -->
-    <div class="list-item" v-for="(item, i) in listData" :key="i">
-      <div class="list-title">
-        <span>{{ title }} ({{ i + 1 }})</span>
-      </div>
-      <!-- 内容 -->
-      <div class="list-content">
-        <van-row type="flex" justify="space-between">
-          <van-col span="6">
-            <div class="subhead">
-              <span>答题时间</span>
-            </div>
-            <div class="content">
-              <span>{{ item.resultDate }}</span>
-            </div>
-          </van-col>
-          <van-col span="6">
-            <div class="subhead">
-              <span>答题时长</span>
-            </div>
-            <div class="content">
-              <span>{{ item.duration }}分钟</span>
-            </div>
-          </van-col>
-          <van-col span="6">
-            <div class="subhead">
-              <span>最终得分</span>
-            </div>
-            <div class="content">
-              <span>{{ item.sorce }}分</span>
-            </div>
-          </van-col>
-        </van-row>
-        <van-row type="flex" justify="space-between">
-          <van-col span="6">
-            <div class="subhead">
-              <span>正确率</span>
-            </div>
-            <div class="content">
-              <span
-                >{{
-                  parseInt(
-                    (item.sucessNum / (item.sucessNum + item.errorNum)) * 100
-                  )
-                }}%</span
-              >
-            </div>
-          </van-col>
-          <van-col span="6">
-            <div class="subhead">
-              <span>错误数</span>
-            </div>
-            <div class="content">
-              <span>{{ item.errorNum }}</span>
-            </div>
-          </van-col>
+  <div class="list-div">
+    <div class="list">
+      <!-- 弹出框标题 -->
+      <div class="list-item" v-for="(item, i) in listData" :key="i">
+        <div class="list-title">
+          <span>{{ title }} ({{ i + 1 }})</span>
+        </div>
+        <!-- 内容 -->
+        <div class="list-content">
+          <van-row type="flex" justify="space-between">
+            <van-col span="6">
+              <div class="subhead">
+                <span>答题时间</span>
+              </div>
+              <div class="content">
+                <span>{{ item.resultDate }}</span>
+              </div>
+            </van-col>
+            <van-col span="6">
+              <div class="subhead">
+                <span>答题时长</span>
+              </div>
+              <div class="content">
+                <span>{{ item.duration }}分钟</span>
+              </div>
+            </van-col>
+            <van-col span="6">
+              <div class="subhead">
+                <span>最终得分</span>
+              </div>
+              <div class="content">
+                <span>{{ item.sorce }}分</span>
+              </div>
+            </van-col>
+          </van-row>
+          <van-row type="flex" justify="space-between">
+            <van-col span="6">
+              <div class="subhead">
+                <span>正确率</span>
+              </div>
+              <div class="content">
+                <span
+                  >{{
+                    parseInt(
+                      (item.sucessNum / (item.sucessNum + item.errorNum)) * 100
+                    )
+                  }}%</span
+                >
+              </div>
+            </van-col>
+            <van-col span="6">
+              <div class="subhead">
+                <span>错误数</span>
+              </div>
+              <div class="content">
+                <span>{{ item.errorNum }}</span>
+              </div>
+            </van-col>
 
-          <van-col span="6">
-            <a
-              href="javascript:;"
-              class="text-btn"
-              @click="toAnswer(item.resultId)"
-              ><span>查看详情</span></a
-            >
-          </van-col>
-        </van-row>
+            <van-col span="6">
+              <a
+                href="javascript:;"
+                class="text-btn"
+                @click="toAnswer(item.resultId)"
+                ><span>查看详情</span></a
+              >
+            </van-col>
+          </van-row>
+        </div>
       </div>
     </div>
   </div>
@@ -100,13 +102,16 @@ export default {
 
 <style scoped>
 /* 列表主div*/
+.list-div{
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
 .list {
   /* background-color: #f4f4f4; */
 
   padding: 1rem;
   padding-top: 2.875rem;
   padding-bottom: 2.875rem;
-  background-color: #f4f4f4;
 }
 /* 答卷列表每一项样式 */
 .list-item {
