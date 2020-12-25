@@ -47,8 +47,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.log
-/10CD/pbems/mvnw
-/10CD/pbems/*.cmd
-/10CD/pbems/*.gz
-/10CD/pbems/*.log
+esol.log
