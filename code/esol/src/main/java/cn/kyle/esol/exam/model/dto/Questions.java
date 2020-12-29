@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 考试试题(分题型)数据传输对象
- * @author yufs
+ * @author Kyle
  */
 @Data
 public class Questions {

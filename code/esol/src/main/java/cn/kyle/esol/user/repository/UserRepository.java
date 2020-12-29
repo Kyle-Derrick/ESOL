@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * 用户数据访问层接口
- * @author yufs
+ * @author Kyle
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
     /**

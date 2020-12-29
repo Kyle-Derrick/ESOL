@@ -2,7 +2,7 @@ package cn.kyle.esol.base.model.constant;
 
 /**
  * 包含所有返回Message的字符串
- * @author yufs
+ * @author Kyle
  */
 public class ReturnMessage {
     /**

@@ -2,7 +2,7 @@ package cn.kyle.esol.base.exception;
 
 /**
  * 带有返回信息的异常
- * @author yufs
+ * @author Kyle
  */
 public class CodeMessageException extends RuntimeException {
 

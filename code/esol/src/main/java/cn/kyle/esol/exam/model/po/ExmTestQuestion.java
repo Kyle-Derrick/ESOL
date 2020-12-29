@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 /**
  * 考卷预设试题实体类
- * @author yufs
+ * @author Kyle
  */
 @Data
 @Entity

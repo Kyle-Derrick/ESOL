@@ -2,7 +2,7 @@ package cn.kyle.esol.exam.model.enumeration;
 
 /**
  * 分数计算规则
- * @author yufs
+ * @author Kyle
  */
 public class SorceRule {
     /**

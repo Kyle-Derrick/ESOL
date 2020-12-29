@@ -23,7 +23,7 @@ module.exports = {
         hotOnly: false,
         proxy: {
           '/api': {
-              target: "http://127.0.0.1:8080",   // 你请求的第三方接口 
+              target: "http://127.0.0.1:8088",   // 你请求的第三方接口 
               changeOrigin: true,
               // pathRewrite: {
               //           '^/api': '/'    //代理的路径

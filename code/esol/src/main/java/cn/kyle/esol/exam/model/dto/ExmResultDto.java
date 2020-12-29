@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 答卷数据传输对象
- * @author yufs
+ * @author Kyle
  */
 @Data
 public class ExmResultDto {

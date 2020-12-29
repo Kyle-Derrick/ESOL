@@ -11,11 +11,11 @@ import java.util.List;
 
 /**
  * 一些简单数据返回,例如广告
- * @author yufs
+ * @author Kyle
  */
 @RestController
 @Slf4j
-public class OtherController implements BaseController{
+public class OtherController implements ApiBaseController {
     @GetMapping("/ads")
     public Message ads(){
         String tmp = "img/2-1.png";

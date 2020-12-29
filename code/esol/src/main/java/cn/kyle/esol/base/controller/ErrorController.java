@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * 重写原本的异常处理控制器，在其中调用默认错误处理的方法，并加以包装
  * 达到返回自定义错误格式的目的
- * @author yufs
+ * @author Kyle
  */
 @Slf4j
 @Controller

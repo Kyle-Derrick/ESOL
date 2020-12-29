@@ -2,7 +2,7 @@ package cn.kyle.esol.base.model.constant;
 
 /**
  * HttpSession中的数据的键值
- * @author yufs
+ * @author Kyle
  */
 public class SessionKeys {
     /**

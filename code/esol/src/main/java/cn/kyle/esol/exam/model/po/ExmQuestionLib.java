@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /**
  * 题库实体类(不可返回答案和解析)
- * @author yufs
+ * @author Kyle
  */
 @Data
 @Entity

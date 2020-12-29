@@ -6,7 +6,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 
 /**
  * 其他配置
- * @author yufs
+ * @author Kyle
  */
 @Configuration
 public class OtherConfig {

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 /**
  * 试卷数据访问层接口
- * @author yufs
+ * @author Kyle
  */
 public interface ExmTestPaperRepository extends JpaRepository<ExmTestPaper, Integer> {
     /**

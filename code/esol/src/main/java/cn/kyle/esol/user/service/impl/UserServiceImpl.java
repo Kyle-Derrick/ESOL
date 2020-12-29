@@ -10,6 +10,7 @@ import cn.kyle.esol.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 import org.springframework.validation.annotation.Validated;
 
 import javax.servlet.http.HttpSession;
@@ -18,7 +19,7 @@ import java.util.Objects;
 
 /**
  * 用户相关服务实现
- * @author yufs
+ * @author Kyle
  */
 @Service
 @Validated
@@ -33,8 +34,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Message login(String userName, String passWord, HttpSession session) {
-        log.info(userName, passWord);
-        User user = userRepository.findOneByUserNameAndPassWord(userName, passWord);
+        log.info(userName);
+        User user = userRepository.findOneByUserNameAndPassWord(
+                userName,
+                DigestUtils.md5DigestAsHex(passWord.getBytes()));
         Message message;
         if (!Objects.isNull(user)){
             session.setAttribute(SessionKeys.USER_INFO, user);

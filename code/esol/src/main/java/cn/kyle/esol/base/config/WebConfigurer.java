@@ -1,7 +1,8 @@
 package cn.kyle.esol.base.config;
 
-import cn.kyle.esol.base.config.interceptor.LoginInterceptor;
-import org.springframework.beans.factory.annotation.Value;
+import cn.kyle.esol.base.config.interceptor.BaseInterceptor;
+import cn.kyle.esol.base.model.domain.ConfigBean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -11,24 +12,34 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistration
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+
 /**
  * web相关配置，比如跨域等
- * @author yufs
+ * @author Kyle
  */
 @Configuration
+@Slf4j
 public class WebConfigurer  implements WebMvcConfigurer {
-    @Value("${login.ignoreUrls:/api/login}")
-    private String[] ignoreUrls;
+    private final ConfigBean config;
+
+    private final BaseInterceptor[] interceptors;
+
+    public WebConfigurer(BaseInterceptor[] interceptors, ConfigBean config) {
+        this.interceptors = interceptors;
+        this.config = config;
+    }
 
     private CorsConfiguration corsConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-    /* 请求常用的三种配置，*代表允许所有，当时你也可以自定义属性（比如header只能带什么，只能是post方式等等）
+    /*
+        请求常用的三种配置，*代表允许所有，当时你也可以自定义属性（比如header只能带什么，只能是post方式等等）
     */
-        corsConfiguration.addAllowedOrigin("*");
-        corsConfiguration.addAllowedHeader("*");
-        corsConfiguration.addAllowedMethod("*");
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setMaxAge(3600L);
+        corsConfiguration.addAllowedOrigin(config.getAllowedOrigin());
+        corsConfiguration.addAllowedHeader(config.getAllowedHeader());
+        corsConfiguration.addAllowedMethod(config.getAllowedMethod());
+        corsConfiguration.setAllowCredentials(config.getAllowCredentials());
+        corsConfiguration.setMaxAge(config.getMaxAge());
         return corsConfiguration;
     }
 
@@ -47,12 +58,14 @@ public class WebConfigurer  implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        InterceptorRegistration interceptorRegistration = registry.addInterceptor(new LoginInterceptor());
-
-        interceptorRegistration.addPathPatterns("/api/**");
-        for (String ignoreUrl : ignoreUrls) {
-            System.out.println(ignoreUrl);
-            interceptorRegistration.excludePathPatterns(ignoreUrl);
+        for (BaseInterceptor interceptor : interceptors) {
+            InterceptorRegistration interceptorRegistration = interceptor.addInterceptor(registry);
+            log.info(interceptor.getIdent());
+            List<String> paths = config.getIgnoreUrls().get(interceptor.getIdent());
+            for (String path : paths) {
+                log.info(path);
+                interceptorRegistration.excludePathPatterns(path);
+            }
         }
     }
 }

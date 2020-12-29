@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 用户信息数据传输对象
- * @author yufs
+ * @author Kyle
  */
 @Data
 public class UserInfo {
@@ -13,9 +13,9 @@ public class UserInfo {
      * 用户名
      */
     private String userName;
-    /**
-     * 用户密码
-     */
+//    /**
+//     * 用户密码
+//     */
 //    private String passWord;
     /**
      * 用户姓名

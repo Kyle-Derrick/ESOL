@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * 答卷数据访问层接口
- * @author yufs
+ * @author Kyle
  */
 public interface ExmResultRepository extends JpaRepository<ExmResult, Integer> {
     /**

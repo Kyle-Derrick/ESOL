@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 /**
  * 用户表实体类
- * @author yufs
+ * @author Kyle
  */
 @Data
 @Table(name = "sys_user")

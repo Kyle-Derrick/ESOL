@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 试卷数据传输对象
- * @author yufs
+ * @author Kyle
  */
 @Data
 public class Exam {

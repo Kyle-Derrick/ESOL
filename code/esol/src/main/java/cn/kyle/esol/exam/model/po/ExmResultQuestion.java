@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 /**
  * 考生答案实体类
- * @author yufs
+ * @author Kyle
  */
 @Data
 @Entity

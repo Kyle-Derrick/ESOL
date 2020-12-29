@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 题库数据访问层接口
- * @author yufs
+ * @author Kyle
  */
 public interface ExmQuestionLibRepository extends JpaRepository<ExmQuestionLib, Integer> {
     /**

@@ -2,7 +2,7 @@ package cn.kyle.esol.exam.model.enumeration;
 
 /**
  * 试卷生成规则
- * @author yufs
+ * @author Kyle
  */
 public class QuestionRule {
     /**

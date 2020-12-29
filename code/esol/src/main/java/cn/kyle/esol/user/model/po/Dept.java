@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /**
  * 部门实体类
- * @author yufs
+ * @author Kyle
  */
 @Data
 @Table(name = "sys_dept")

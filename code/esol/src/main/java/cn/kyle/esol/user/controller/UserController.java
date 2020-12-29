@@ -1,22 +1,23 @@
 package cn.kyle.esol.user.controller;
 
-import cn.kyle.esol.base.controller.BaseController;
+import cn.kyle.esol.base.controller.ApiBaseController;
 import cn.kyle.esol.base.model.constant.SessionKeys;
 import cn.kyle.esol.base.model.dto.Message;
 import cn.kyle.esol.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
 /**
  * 用户相关控制器
- * @author yufs
+ * @author Kyle
  */
 @RestController
-public class UserController implements BaseController {
+public class UserController implements ApiBaseController {
     private final
     UserService userService;
 
@@ -32,7 +33,9 @@ public class UserController implements BaseController {
      * @param session HttpSession
      */
     @PostMapping("/login")
-    public Message login(String userName, String passWord, HttpSession session){
+    public Message login(@RequestParam("username") String userName,
+                         @RequestParam("password") String passWord,
+                         HttpSession session){
         return userService.login(userName, passWord, session);
     }
 

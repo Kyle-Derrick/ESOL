@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * 用户相关服务接口
- * @author yufs
+ * @author Kyle
  */
 public interface UserService {
   /**

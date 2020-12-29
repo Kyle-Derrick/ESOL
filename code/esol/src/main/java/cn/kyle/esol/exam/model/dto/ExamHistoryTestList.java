@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * 历史答卷列表信息数据传输对象
- * @author yufs
+ * @author Kyle
  */
 @Data
 @ToString

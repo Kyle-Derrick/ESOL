@@ -10,7 +10,7 @@
           input-align="center"
           size="large"
           placeholder="请输入用户名"
-          v-model="form.userName"
+          v-model="form.username"
         >
           <van-icon
             class="index_icon"
@@ -22,7 +22,7 @@
           input-align="center"
           size="large"
           placeholder="请输入密码"
-          v-model="form.passWord"
+          v-model="form.password"
         >
           <van-icon
             class="index_icon"

@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import config from "@/assets/js/config.js";
 
 Vue.use(Vuex);
 /**
@@ -9,8 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {},
-    host: config.baseApiUrl,
-    path: config.basePath,
+    host: kyle_config.baseApiUrl,
+    path: kyle_config.basePath,
     nav: {
       title: "",
       back: null,

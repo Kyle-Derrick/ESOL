@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * 部门数据访问层接口
- * @author yufs
+ * @author Kyle
  */
 public interface DeptRepository extends JpaRepository<Dept, Integer> {
 }

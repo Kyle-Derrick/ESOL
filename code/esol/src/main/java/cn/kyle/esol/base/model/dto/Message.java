@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * 返回给前端数据时需要用到的数据传输对象
- * @author yufs
+ * @author Kyle
  */
 @Getter
 public class Message {

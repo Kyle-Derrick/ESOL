@@ -4,7 +4,7 @@ import cn.kyle.esol.base.exception.CodeMessageException;
 
 /**
  * 程序抛出的异常
- * @author yufs
+ * @author Kyle
  */
 public class Exceptions {
     /**
