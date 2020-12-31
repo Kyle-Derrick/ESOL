@@ -131,7 +131,7 @@ export default {
   font-weight: bold;
 }
 .info_t .first {
-  border-right: 0.01rem #a4a4a4 solid;
+  /* border-right: 0.01rem #a4a4a4 solid; */
   padding-right: 0.6rem;
   margin-right: 0.6rem;
 }

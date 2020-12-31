@@ -12,7 +12,7 @@ public class ReturnMessage {
     /**
      * 登录失败返回
      */
-    public static final String LOGIN_FAIL = "登录失败,用户名或电话号码错误";
+    public static final String LOGIN_FAIL = "登录失败,用户名或密码错误";
     /**
      * 成功默认返回
      */

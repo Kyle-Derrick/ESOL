@@ -3,10 +3,9 @@ package cn.kyle.esol.base.config.interceptor;
 import cn.kyle.esol.base.exception.CodeMessageException;
 import cn.kyle.esol.base.model.constant.ReturnMessage;
 import cn.kyle.esol.base.model.constant.SessionKeys;
-import cn.kyle.esol.user.model.po.User;
+import cn.kyle.esol.repository.user.model.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 

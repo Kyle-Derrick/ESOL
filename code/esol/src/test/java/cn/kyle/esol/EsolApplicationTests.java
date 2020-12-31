@@ -1,8 +1,8 @@
 package cn.kyle.esol;
 
-import cn.kyle.esol.exam.repository.ExmQuestionLibRepository;
-import cn.kyle.esol.exam.repository.ExmResultRepository;
-import cn.kyle.esol.exam.repository.ExmTestPaperRepository;
+import cn.kyle.esol.repository.exam.repository.ExmQuestionLibRepository;
+import cn.kyle.esol.repository.exam.repository.ExmResultRepository;
+import cn.kyle.esol.repository.exam.repository.ExmTestPaperRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

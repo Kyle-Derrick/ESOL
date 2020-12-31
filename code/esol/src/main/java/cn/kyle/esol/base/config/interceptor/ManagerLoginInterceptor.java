@@ -3,11 +3,10 @@ package cn.kyle.esol.base.config.interceptor;
 import cn.kyle.esol.base.exception.CodeMessageException;
 import cn.kyle.esol.base.model.constant.ReturnMessage;
 import cn.kyle.esol.base.model.constant.SessionKeys;
-import cn.kyle.esol.user.model.po.User;
+import cn.kyle.esol.repository.user.model.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
@@ -26,7 +25,7 @@ public class ManagerLoginInterceptor implements BaseInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        User user = (User) request.getSession().getAttribute(SessionKeys.USER_INFO);
+        User user = (User) request.getSession().getAttribute(SessionKeys.MANAGE_USER_INFO);
         if (StringUtils.isEmpty(user)) {
             log.error(ReturnMessage.NOT_LOGIN+request.getRequestURI());
             throw new CodeMessageException("未登录", 403, null);

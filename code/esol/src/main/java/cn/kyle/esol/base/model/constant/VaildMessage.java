@@ -14,7 +14,7 @@ public class VaildMessage {
      */
     public static final String VAILD_LOGIN_USERNAME_BLANK = "用户名为空";
     /**
-     * 电话号码为空
+     * 密码为空
      */
     public static final String VAILD_LOGIN_PASSWORD_BLANK = "用户密码为空";
 }

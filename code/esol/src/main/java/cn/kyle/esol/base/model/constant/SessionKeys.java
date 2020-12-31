@@ -10,6 +10,10 @@ public class SessionKeys {
      */
     public static final String USER_INFO = "USER_INFO";
     /**
+     * 当前登录管理员用户信息
+     */
+    public static final String MANAGE_USER_INFO = "MANAGE_USER_INFO";
+    /**
      * 当前考试试卷信息
      */
     public static final String EXAM_TEST = "EXAM_TEST";
