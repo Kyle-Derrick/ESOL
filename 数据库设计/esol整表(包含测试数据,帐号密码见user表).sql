@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : localhost_3306
  Source Server Type    : MariaDB
  Source Server Version : 100210
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 100210
  File Encoding         : 65001
 
- Date: 01/12/2019 18:47:44
+ Date: 03/01/2021 15:54:32
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `exm_question_lib`  (
   `analysis` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `vsrsion` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`question_lib_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2913 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2914 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of exm_question_lib
@@ -1008,7 +1008,7 @@ CREATE TABLE `exm_result`  (
   INDEX `FK_fk_user_reslt`(`user_id`) USING BTREE,
   CONSTRAINT `FK_fk_test_paper_reuslt` FOREIGN KEY (`test_paper_id`) REFERENCES `exm_test_paper` (`test_paper_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_fk_user_reslt` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 87 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of exm_result
@@ -1082,6 +1082,12 @@ INSERT INTO `exm_result` VALUES (71, 1, 2, 7, '2019-12-01', 5, 5, 0, 1);
 INSERT INTO `exm_result` VALUES (72, 1, 2, 19, '2019-12-01', 4, 4, 1, 1);
 INSERT INTO `exm_result` VALUES (73, 1, 2, 7, '2019-12-01', 5, 5, 0, 1);
 INSERT INTO `exm_result` VALUES (86, 1, 2, 8, '2019-12-01', 4, 4, 1, 1);
+INSERT INTO `exm_result` VALUES (87, 1, 5, 4, '2020-12-24', 2, 1, 4, 1);
+INSERT INTO `exm_result` VALUES (88, 1, 5, 8, '2020-12-29', 2, 1, 4, 1);
+INSERT INTO `exm_result` VALUES (89, 1, 4, 10, '2020-12-31', 2, 1, 2, 1);
+INSERT INTO `exm_result` VALUES (90, 1, 4, 42, '2020-12-31', 2, 1, 2, 1);
+INSERT INTO `exm_result` VALUES (91, 15, 4, 22, '2020-12-31', 2, 1, 2, 1);
+INSERT INTO `exm_result` VALUES (92, 15, 5, 13, '2020-12-31', 0, 0, 5, 1);
 
 -- ----------------------------
 -- Table structure for exm_result_question
@@ -1104,7 +1110,7 @@ CREATE TABLE `exm_result_question`  (
   PRIMARY KEY (`result_question_id`) USING BTREE,
   INDEX `FK_fk_result_question`(`result_id`) USING BTREE,
   CONSTRAINT `FK_fk_result_question` FOREIGN KEY (`result_id`) REFERENCES `exm_result` (`result_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 415 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 445 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of exm_result_question
@@ -1454,6 +1460,36 @@ INSERT INTO `exm_result_question` VALUES (411, 86, 1966, '1', '马克思主义�
 INSERT INTO `exm_result_question` VALUES (412, 86, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', '[A, B, C]', 1);
 INSERT INTO `exm_result_question` VALUES (413, 86, 2026, '3', '邓小平理论第一次比较系统地初步回答了在中国这样的经济文化比较落后的国家如何建设社会主义、如何巩固和发展社会主义的一系列基本问题，是中国特色社会主义理论体系的开创制作。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', 'T', 1);
 INSERT INTO `exm_result_question` VALUES (414, 86, 2032, '3', '毛泽东思想不仅过去引导我们取得革命胜利，现在和将来还应该是中国党和国家的宝贵财富。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', 'F', 1);
+INSERT INTO `exm_result_question` VALUES (415, 87, 2870, '1', '执政考验的核心就是___________。', 'A、能否长期执政下去的问题', 'B、能否坚持群众路线', 'C、能否代表先进生产力的发展要求', 'D、能否有效防腐拒变', 'A', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (416, 87, 2047, '1', '新民主主义革命的政治纲领是要建立______。', 'A、资产阶级专政的共和国', 'B、无产阶级专政的共和国', 'C、无产阶级领导的各革命阶级联合专政的民主共和国', 'D、无产阶级领导的工农民主专政的苏维埃共和国', 'C', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (417, 87, 2015, '2', '毛泽东思想的活的灵魂有三个基本方面____。', 'A、实事求是', 'B、群众路线', 'C、统一战线', 'D、独立自主', '[A, B, D]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (418, 87, 2115, '2', '对农业的社会主义改造坚持的基本原则有_______。', 'A、固定不变的社会', 'B、过渡性的社会', 'C、独立的社会形态', 'D、从属于新民主主义革命的社会', '[A, C, D]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (419, 87, 2526, '3', '我国现阶段的人民民主专政实质上是无产阶级专政。', 'A、把节约资源放在首位', 'B、坚持保护优先', 'C、推进绿色发展', 'D、开发重于保护', 'T', '暂无', 'T', 1);
+INSERT INTO `exm_result_question` VALUES (420, 88, 2714, '1', '中国坚持独立自主的和平外交政策要把___________放在第一位。', 'A、国家的经济', 'B、国家的政治', 'C、国家主权和安全', 'D、国家的文化', 'C', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (421, 88, 2392, '1', '控制国民经济命脉，对经济发展起主导作用。这是我国公有制主体地位的体现之一。', 'A、股份合作制经济', 'B、股份制经济', 'C、集体经济', 'D、国有经济', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (422, 88, 2292, '2', '为全面落实科学技术是第一生产力的思想，我国相继实施了___________。', 'A、科教兴国战略', 'B、人才强国战略', 'C、振兴科技战略', 'D、高校扩招战略', '[A, B]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (423, 88, 2086, '2', '新民主主义革命道路，根本在于处理好____三者之间的关系。', 'A、武装斗争', 'B、土地革命', 'C、农村革命根据地建设', 'D、以建立和扩大根据地为中心内容', '[A, B, C]', '暂无', '[B]', 1);
+INSERT INTO `exm_result_question` VALUES (424, 88, 2857, '3', '积极引导宗教与社会主义社会相适应，就是要求宗教界人士和信教群众放弃宗教信仰。', 'A、精干', 'B、联合', 'C、多能', 'D、高效', 'F', '暂无', 'F', 1);
+INSERT INTO `exm_result_question` VALUES (425, 89, 1998, '1', '对党的思想路线的内容首次作出概括的是______。', 'A、毛泽东', 'B、江泽民', 'C、刘少奇', 'D、邓小平', 'D', '暂无', 'B', 1);
+INSERT INTO `exm_result_question` VALUES (426, 89, 2000, '1', '实际事物是具体的，而本本是对实际事物研究、抽象的结果，不能成为研究问题和作出决策的出发点，出发点只能是客观实际。____是实际出发的中心一环。', 'A、认真学习、反复思考', 'B、理论联系实际', 'C、走群众路线', 'D、调查研究', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (427, 89, 2006, '2', '毛泽东思想的科学含义包括________。', 'A、马克思列宁主义在中国的运用和发展', 'B、毛泽东个人的思想', 'C、是被实践证明了的关于中国革命和建设的正确的理论原则和经验总结', 'D、中国共产党集体智慧的结晶', '[A, C, D]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (428, 89, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', '[B, C]', 1);
+INSERT INTO `exm_result_question` VALUES (429, 89, 2038, '3', '毛泽东规定了全心全意为人民服务是人民军队的唯一宗旨，规定了是党指挥枪而不是枪指挥党的原则。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', 'T', 1);
+INSERT INTO `exm_result_question` VALUES (430, 90, 1998, '1', '对党的思想路线的内容首次作出概括的是______。', 'A、毛泽东', 'B、江泽民', 'C、刘少奇', 'D、邓小平', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (431, 90, 2000, '1', '实际事物是具体的，而本本是对实际事物研究、抽象的结果，不能成为研究问题和作出决策的出发点，出发点只能是客观实际。____是实际出发的中心一环。', 'A、认真学习、反复思考', 'B、理论联系实际', 'C、走群众路线', 'D、调查研究', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (432, 90, 2006, '2', '毛泽东思想的科学含义包括________。', 'A、马克思列宁主义在中国的运用和发展', 'B、毛泽东个人的思想', 'C、是被实践证明了的关于中国革命和建设的正确的理论原则和经验总结', 'D、中国共产党集体智慧的结晶', '[A, C, D]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (433, 90, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', '[D]', 1);
+INSERT INTO `exm_result_question` VALUES (434, 90, 2038, '3', '毛泽东规定了全心全意为人民服务是人民军队的唯一宗旨，规定了是党指挥枪而不是枪指挥党的原则。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', 'T', 1);
+INSERT INTO `exm_result_question` VALUES (435, 91, 1998, '1', '对党的思想路线的内容首次作出概括的是______。', 'A、毛泽东', 'B、江泽民', 'C、刘少奇', 'D、邓小平', 'D', '暂无', 'A', 1);
+INSERT INTO `exm_result_question` VALUES (436, 91, 2000, '1', '实际事物是具体的，而本本是对实际事物研究、抽象的结果，不能成为研究问题和作出决策的出发点，出发点只能是客观实际。____是实际出发的中心一环。', 'A、认真学习、反复思考', 'B、理论联系实际', 'C、走群众路线', 'D、调查研究', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (437, 91, 2006, '2', '毛泽东思想的科学含义包括________。', 'A、马克思列宁主义在中国的运用和发展', 'B、毛泽东个人的思想', 'C、是被实践证明了的关于中国革命和建设的正确的理论原则和经验总结', 'D、中国共产党集体智慧的结晶', '[A, C, D]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (438, 91, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', '[C, D]', 1);
+INSERT INTO `exm_result_question` VALUES (439, 91, 2038, '3', '毛泽东规定了全心全意为人民服务是人民军队的唯一宗旨，规定了是党指挥枪而不是枪指挥党的原则。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', 'T', 1);
+INSERT INTO `exm_result_question` VALUES (440, 92, 2137, '1', '毛泽东同志在《论十大关系》的报告中确定了党关于社会主义建设的一个极为重要的基本方针是___________。', 'A、工业化建设和社会主义三大改造', 'B、调动一切积极因素为社会主义事业服务', 'C、从落后的农业国转变为先进的工业国', 'D、以农立国', 'B', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (441, 92, 2417, '1', '中共十八届四中全会强调，中国特色社会主义最本质的特征，社会主义法治最根本的保证是。', 'A、人民当家作主', 'B、依法治国', 'C、法治与德治相结合', 'D、党的领导', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (442, 92, 2491, '2', '建设社会主义文化强国，需要___________。', 'A、培养高度的文化自觉自信', 'B、大力发展文化事业和文化产业', 'C、加快文化体制改革', 'D、提高国民生产总值', '[A, B, C]', '暂无', '[A]', 1);
+INSERT INTO `exm_result_question` VALUES (443, 92, 2243, '2', '下列观点和倾向，属于资产阶级自由化表现的有_______。', 'A、反对共产党的领导', 'B、否定社会主义制度', 'C、主张资本主义制度', 'D、主张全盘西化', '[A, B, C, D]', '暂无', '[B, C]', 1);
+INSERT INTO `exm_result_question` VALUES (444, 92, 2700, '3', '1997年7月1日，澳门正式回归祖国的怀抱。', 'A、一个中国是核心', 'B、“一国”是实现“两制”的前提和基础', 'C、“两制”从属和派生于“一国”，并统一于“一国”之内', 'D、高度自治', 'F', '暂无', 'T', 1);
 
 -- ----------------------------
 -- Table structure for exm_test_paper
@@ -1475,7 +1511,7 @@ CREATE TABLE `exm_test_paper`  (
   `total_num` int(11) NULL DEFAULT NULL,
   `version` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`test_paper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of exm_test_paper
@@ -1483,7 +1519,8 @@ CREATE TABLE `exm_test_paper`  (
 INSERT INTO `exm_test_paper` VALUES (1, '第一次考试', '2019-11-02', '2019-11-29', 10, 3, 1, 10, 2, 2, 1, 2, 5, 1);
 INSERT INTO `exm_test_paper` VALUES (2, '第二次考试', '2019-11-27', '2019-12-06', 5, 99, 1, 5, 1, 2, 1, 2, 5, 1);
 INSERT INTO `exm_test_paper` VALUES (3, '第三次考试', '2019-12-28', '2019-12-31', 12, 2, 2, 10, 2, 2, 2, 1, 5, 1);
-INSERT INTO `exm_test_paper` VALUES (4, '第四次考试', '2019-11-01', '2019-12-29', 6, 1, 1, 6, 1, 1, 1, 1, 3, 1);
+INSERT INTO `exm_test_paper` VALUES (4, '第四次考试', '2019-11-01', '2021-01-05', 6, 3, 1, 6, 1, 1, 1, 1, 3, 1);
+INSERT INTO `exm_test_paper` VALUES (5, '第一次测试考试', '2020-12-23', '2021-01-10', 10, 2, 1, 10, 2, 2, 2, 1, 5, NULL);
 
 -- ----------------------------
 -- Table structure for exm_test_question
@@ -1529,16 +1566,17 @@ CREATE TABLE `sys_dept`  (
   `full_id` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `version` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`dept_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dept
 -- ----------------------------
-INSERT INTO `sys_dept` VALUES (1, '上级部门', 'adam', '上级部门', NULL, NULL, 0);
-INSERT INTO `sys_dept` VALUES (2, '中级部门', 'drsn', '中级部门', 1, '/1', 1);
-INSERT INTO `sys_dept` VALUES (3, '下级部门', 'bob', '下级部门', 2, '/1/2', 1);
-INSERT INTO `sys_dept` VALUES (4, '部门二', 'chunzhang', '底层部门', 3, '/1/2/3', 1);
-INSERT INTO `sys_dept` VALUES (5, '部门三', 'DaZhuang', '中级部门', 1, '/1', 1);
+INSERT INTO `sys_dept` VALUES (1, '计算机工程学院', 'adam', '学院', 0, '/0', 1);
+INSERT INTO `sys_dept` VALUES (2, '软件工程', 'drsn', '专业', 1, '/0/1', 1);
+INSERT INTO `sys_dept` VALUES (3, '20级软件专升本1班', 'bob', '班级', 2, '/0/1/2', 1);
+INSERT INTO `sys_dept` VALUES (4, '20级软件专升本2班', '2333', '班级', 2, '/0/1/2', 1);
+INSERT INTO `sys_dept` VALUES (5, '18级软件1班', 'DaZhuang', '班级', 2, '/0/1/2', 1);
+INSERT INTO `sys_dept` VALUES (12, '数字艺术媒体学院', 'kyle', '学院', 0, '/0', 1);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1547,24 +1585,27 @@ DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
   `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户编号',
   `dept_id` int(11) NULL DEFAULT NULL COMMENT '部门编号',
-  `user_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `user_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `telphone` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `pass_word` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_kind` int(11) NULL DEFAULT NULL COMMENT '用户类型:1管理员2考试用户',
   `version` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`) USING BTREE,
+  UNIQUE INDEX `user_name`(`user_name`) USING BTREE,
   INDEX `FK_fk_dept_user`(`dept_id`) USING BTREE,
   CONSTRAINT `FK_fk_dept_user` FOREIGN KEY (`dept_id`) REFERENCES `sys_dept` (`dept_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 1, 'adam', 'adam', '123', 1, 0);
-INSERT INTO `sys_user` VALUES (2, 2, 'drsn', 'drsn', '123', 2, 1);
-INSERT INTO `sys_user` VALUES (3, 3, 'bob', '鲍勃', '123', 2, 1);
-INSERT INTO `sys_user` VALUES (4, 4, 'chunzhang', '村长', '123', 2, 1);
-INSERT INTO `sys_user` VALUES (5, 5, 'DaZhuang', '大壮', '123', 2, 1);
-INSERT INTO `sys_user` VALUES (6, 2, 'xiaoer', '小二', '123', 2, 1);
+INSERT INTO `sys_user` VALUES (1, 1, 'adam', 'adam', '202cb962ac59075b964b07152d234b70', 1, 1);
+INSERT INTO `sys_user` VALUES (2, 2, 'drsn', 'drsn', 'e10adc3949ba59abbe56e057f20f883e', 2, 1);
+INSERT INTO `sys_user` VALUES (3, 3, 'bob', '鲍勃', 'e10adc3949ba59abbe56e057f20f883e', 2, 1);
+INSERT INTO `sys_user` VALUES (4, 4, 'chunzhang', '村长', 'e10adc3949ba59abbe56e057f20f883e', 2, 1);
+INSERT INTO `sys_user` VALUES (5, 5, 'DaZhuang', '大壮', 'e10adc3949ba59abbe56e057f20f883e', 2, 1);
+INSERT INTO `sys_user` VALUES (6, 2, 'xiaoer1', '小二', '14e1b600b1fd579f47433b88e8d85291', 2, 1);
+INSERT INTO `sys_user` VALUES (15, 2, 'qwer', '卧槽', '202cb962ac59075b964b07152d234b70', 3, 1);
+INSERT INTO `sys_user` VALUES (16, 3, 'qwerqwer', 'fff', '962012d09b8170d912f0669f6d7d9d07', 2, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

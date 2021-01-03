@@ -18,8 +18,6 @@ Vue.prototype.$http = axios;
 
 Vue.prototype.$stringify = data => qs.stringify(data);
 
-Vue.prototype.$mui = mui;
-
 new Vue({
   router,
   store,
