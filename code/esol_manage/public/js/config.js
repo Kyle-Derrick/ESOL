@@ -3,7 +3,7 @@ let basePath = "/manage";
 /**
  * 前端的一些配置,比如跨域请求的服务器地址;
  */
-var kyle_config = {
+let kyle_config = {
   baseApiUrl,
   basePath,
   proApiUrl: baseApiUrl + basePath,

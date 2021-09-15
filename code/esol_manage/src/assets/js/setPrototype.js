@@ -25,25 +25,27 @@ Vue.prototype.$afterHttp = function(
       } else if (data.code === 403) {
         that.$message({
           showClose: true,
-          message: '未登录',
-          type: 'error'
+          message: "未登录",
+          type: "error"
         });
         that.$router.replace("/");
       } else {
         if (failFun) failFun(data);
-        else that.$message({
-          showClose: true,
-          message: data.msg,
-          type: 'error'
-        });
+        else
+          that.$message({
+            showClose: true,
+            message: data.msg,
+            type: "error"
+          });
       }
     })
     .catch(err => {
       if (errorFun) errorFun(err);
-      else that.$message({
+      else
+        that.$message({
           showClose: true,
           message: err.message,
-          type: 'error'
+          type: "error"
         });
     })
     .finally(() => {

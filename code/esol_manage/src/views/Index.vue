@@ -3,32 +3,38 @@
   <div class="index">
     <div class="center-center">
       <!-- 登录帐号密码框 -->
-	  <el-card class="login-cell">
-		  <el-form :model="form" @keypress.native.enter="login">
-			<h2>登录</h2>
-			<el-form-item>
-			  <el-input v-model="form.username" placeholder="请输入账号">
-					<i slot="prepend" class="el-icon-user"></i>
-			  </el-input>
-			</el-form-item>
-			<el-form-item>
-			  <el-input v-model="form.password" show-password placeholder="请输入密码">
-					<i slot="prepend" class="el-icon-user"></i>
-			  </el-input>
-			</el-form-item>
-			<!-- 登录按钮 -->
-			<el-form-item>
-				<el-button type="primary" 
-				  class="index_btn radius"
-				   size="medium"
-				  @click="login"
-				  :loading="loginning"
-				  round
-				  > 登录 </el-button
-				>
-			</el-form-item>
-		  </el-form>
-	  </el-card>
+      <el-card class="login-cell">
+        <el-form :model="form" @keypress.native.enter="login">
+          <h2>登录</h2>
+          <el-form-item>
+            <el-input v-model="form.username" placeholder="请输入账号">
+              <i slot="prepend" class="el-icon-user"></i>
+            </el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input
+              v-model="form.password"
+              show-password
+              placeholder="请输入密码"
+            >
+              <i slot="prepend" class="el-icon-user"></i>
+            </el-input>
+          </el-form-item>
+          <!-- 登录按钮 -->
+          <el-form-item>
+            <el-button
+              type="primary"
+              class="index_btn radius"
+              size="medium"
+              @click="login"
+              :loading="loginning"
+              round
+            >
+              登录
+            </el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
     </div>
   </div>
 </template>
@@ -58,7 +64,7 @@ export default {
         "/login",
         this.$stringify(this.form),
         data => {
-		  this.$store.state.user = data.data;
+          this.$store.state.user = data.data;
           that.$router.replace("/home/user");
         },
         null,
@@ -81,12 +87,12 @@ export default {
   margin-top: 2rem;
   width: 22rem;
   margin: 0 auto;
-  background-color: #F2F6FC;
+  background-color: #f2f6fc;
   padding: 2rem;
   border-radius: 5px;
 }
 .login-cell h2 {
-	 color: #606266;
+  color: #606266;
 }
 /* 输入框 */
 .van-field {
@@ -111,6 +117,6 @@ export default {
   height: 100vh;
   z-index: -1;
 
-/*  background-image: linear-gradient(#67C23A, #13CC6F); */
+  /*  background-image: linear-gradient(#67C23A, #13CC6F); */
 }
 </style>
