@@ -88,6 +88,7 @@ export default {
     logout() {
       let that = this;
       this.$post(this, "/logout", null, () => {
+        that.$store.commit("updateUser", {});
         that.$router.replace("/");
       });
     }
