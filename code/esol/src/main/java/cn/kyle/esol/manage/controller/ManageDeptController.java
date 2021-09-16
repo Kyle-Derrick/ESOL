@@ -25,10 +25,15 @@ public class ManageDeptController {
 
     @PostMapping("/list")
     public Message list(@RequestParam(required = false) String name,
+                        @RequestParam(required = false, defaultValue = "0") Integer rootId,
                         @RequestParam(defaultValue = "1") Integer pageIndex,
                         @RequestParam(defaultValue = "20") Integer pageSize,
                         HttpSession session) {
-        return deptService.list(name, pageIndex, pageSize, session);
+        return deptService.list(name, rootId, pageIndex, pageSize, session);
+    }
+    @PostMapping("/childList/{id}")
+    public Message childList(@PathVariable Integer id) {
+        return deptService.childList(id);
     }
     @GetMapping("/find/{id}")
     public Message get(@PathVariable Integer id) {

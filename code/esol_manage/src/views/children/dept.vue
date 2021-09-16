@@ -12,7 +12,14 @@
         style="position: relative; height: 100%; border: 1px solid rgb(238, 238, 238); box-sizing: border-box; border-radius: 4px"
         wrap-style="position: absolute; top: 0; bottom: 0; right: 0; left: 0;overflow-x: hidden;"
       >
-        <el-tree :props="treeProps" :load="loadTreeNode" lazy></el-tree>
+        <el-tree
+          ref="deptTree"
+          :props="treeProps"
+          :load="loadTreeNode"
+          lazy
+          @node-click="treeNodeClick"
+          highlight-current
+        ></el-tree>
       </el-scrollbar>
     </el-aside>
     <el-main>
@@ -116,22 +123,22 @@
                   placeholder="请输入"
                 ></el-input>
               </el-form-item>
-              <el-form-item label="父级部门" label-width="120px">
-                <el-select
-                  v-model="datainfo.parentId"
-                  filterable
-                  placeholder="请选择"
-                >
-                  <el-option label="根级" :value="0"> </el-option>
-                  <el-option
-                    v-for="item in listData"
-                    :key="item.deptId"
-                    :label="item.name"
-                    :value="item.deptId"
-                  >
-                  </el-option>
-                </el-select>
-              </el-form-item>
+              <!--              <el-form-item label="父级部门" label-width="120px">-->
+              <!--                <el-select-->
+              <!--                  v-model="datainfo.parentId"-->
+              <!--                  filterable-->
+              <!--                  placeholder="请选择"-->
+              <!--                >-->
+              <!--                  <el-option label="根级" :value="0"> </el-option>-->
+              <!--                  <el-option-->
+              <!--                    v-for="item in listData"-->
+              <!--                    :key="item.deptId"-->
+              <!--                    :label="item.name"-->
+              <!--                    :value="item.deptId"-->
+              <!--                  >-->
+              <!--                  </el-option>-->
+              <!--                </el-select>-->
+              <!--              </el-form-item>-->
             </el-form>
             <div slot="footer" class="dialog-footer">
               <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -161,7 +168,8 @@ export default {
       pageSize: 20,
       totalPage: 0,
       param: {
-        name: ""
+        name: "",
+        rootId: 0
       },
       dialogFormVisible: false,
       datainfo: {}
@@ -173,30 +181,33 @@ export default {
   methods: {
     loadTreeNode(node, resolve) {
       if (node.level === 0) {
-        return resolve([{ name: "region" }]);
-      }
-      if (node.level > 1) return resolve([]);
-
-      setTimeout(() => {
-        const data = [
+        return resolve([
           {
-            name: "leaf",
-            leaf: true
-          },
-          {
-            name: "zone"
+            name: "全部",
+            deptId: 0
           }
-        ];
-        for (let i = 0; i < 100; i++) {
-          data.push({
-            name: "leaf",
-            leaf: true
-          });
+        ]);
+      }
+
+      this.$post(
+        this,
+        "/dept/childList/".concat(node.data.deptId),
+        {},
+        data => {
+          resolve(data.data);
         }
-        resolve(data);
-      }, 500);
+      );
     },
-    deptHandle(row, column, cellValue/*, index*/) {
+    treeNodeClick(data) {
+      this.param.rootId = data.deptId;
+      this.search();
+    },
+    flushTreeNode() {
+      let node = this.$refs.deptTree.currentNode.node;
+      node.loaded = false;
+      node.expand();
+    },
+    deptHandle(row, column, cellValue /*, index*/) {
       let name = "";
       this.listData.forEach(item => {
         if (cellValue === item.deptId) {
@@ -251,12 +262,14 @@ export default {
     saveData() {
       let that = this;
       console.log(this.datainfo);
+      this.datainfo.parentId = this.param.rootId;
       this.$post(this, "/dept/save", this.datainfo, data => {
         that.$message({
           showClose: true,
           message: data.msg,
           type: "success"
         });
+        that.flushTreeNode();
         that.search();
         that.dialogFormVisible = false;
         that.datainfo = {};
@@ -264,18 +277,16 @@ export default {
     },
     search() {
       let that = this;
-      this.$post(
-        this,
-        "/dept/list",
-        this.$stringify({
-          name: this.param.name,
-          pageIndex: this.currentPage
-        }),
-        data => {
-          that.pageSize = data.data.length;
-          that.listData = data.data;
-        }
-      );
+      this.param.currentPage = this.currentPage;
+      this.param.pageSize = this.pageSize;
+      this.$post(this, "/dept/list", this.$stringify(this.param), data => {
+        // that.pageSize = data.data.length;
+        // that.listData = data.data;
+        that.currentPage = data.data.pageIndex;
+        that.pageSize = data.data.pageSize;
+        that.totalPage = data.data.total;
+        that.listData = data.data.list;
+      });
     },
     delete_request(ids) {
       let that = this;
@@ -285,6 +296,7 @@ export default {
           message: data.msg,
           type: "success"
         });
+        that.flushTreeNode();
         that.search();
       });
     }

@@ -1,12 +1,9 @@
 package cn.kyle.esol.manage.service;
 
-import cn.kyle.esol.base.model.constant.VaildMessage;
 import cn.kyle.esol.base.model.dto.Message;
 import cn.kyle.esol.repository.user.model.po.Dept;
-import cn.kyle.esol.repository.user.model.po.User;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -15,9 +12,11 @@ import java.util.List;
  */
 public interface ManageDeptService {
     Message list(String name,
+                 Integer rootId,
                  Integer pageIndex,
                  Integer pageSize,
                  HttpSession session);
+    Message childList(Integer id);
     Message get(Integer id);
     Message delete(List<Integer> ids);
     Message save(Dept dept);

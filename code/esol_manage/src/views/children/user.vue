@@ -112,7 +112,11 @@
             </el-select>
           </el-form-item>
           <el-form-item label="用户部门" label-width="120px">
-            <el-input v-model="userinfo.deptId"></el-input>
+            <!--            <el-input v-model="userinfo.deptId"></el-input>-->
+            <dept-selecter
+              v-model="userinfo.deptId"
+              :selected_dept="userinfo.selected_dept"
+            ></dept-selecter>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -125,9 +129,10 @@
 </template>
 
 <script>
+import deptSelecter from "../../components/deptSelecter";
 export default {
   name: "user",
-  components: {},
+  components: { deptSelecter },
   data() {
     return {
       listData: [],
@@ -182,6 +187,7 @@ export default {
     editUser(row) {
       this.userinfo = row;
       this.userinfo.deptId = row.dept.deptId;
+      this.userinfo.selected_dept = row.dept.name;
       this.dialogFormVisible = true;
     },
     delete_all() {
@@ -227,6 +233,7 @@ export default {
           pageSize: this.pageSize
         }),
         data => {
+          console.log(data);
           that.currentPage = data.data.pageIndex;
           that.pageSize = data.data.pageSize;
           that.totalPage = data.data.total;

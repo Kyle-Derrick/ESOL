@@ -10,12 +10,10 @@ import cn.kyle.esol.repository.user.repository.DeptRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 import javax.servlet.http.HttpSession;
@@ -30,6 +28,8 @@ import java.util.Optional;
 @Validated
 @Slf4j
 public class ManageDeptServiceImpl implements ManageDeptService {
+    private final static String FULLID_LIKE = "/%s/";
+
     private final DeptRepository deptRepository;
 
     @Autowired
@@ -40,20 +40,34 @@ public class ManageDeptServiceImpl implements ManageDeptService {
 
     @Override
     public Message list(String name,
+                        Integer rootId,
                         Integer pageIndex,
                         Integer pageSize,
                         HttpSession session) {
         try {
-            Dept deptDemo = new Dept().setName(name);
-            Example<Dept> example = Example.of(deptDemo,
-                    ExampleMatcher.matching().withMatcher("name",
-                            ExampleMatcher.GenericPropertyMatchers.contains()
-                    )
-            );
+            Dept deptDemo = new Dept();
+
+            ExampleMatcher matcher = ExampleMatcher.matching();
+            if (!StringUtils.isEmpty(name)) {
+                deptDemo.setName(name);
+                matcher = matcher.withMatcher("name",
+                        ExampleMatcher.GenericPropertyMatchers.contains()
+                );
+            }
+            if (rootId != 0) {
+                deptDemo.setFullId(String.format(FULLID_LIKE, rootId.toString()));
+                matcher = matcher.withMatcher("fullId",
+                        ExampleMatcher.GenericPropertyMatchers.contains()
+                );
+            }
+
+            Example<Dept> example = Example.of(deptDemo, matcher);
+
             Message message = Message.success();
             if (pageIndex == -1) {
                 List<Dept> list = deptRepository.findAll(example);
-                message.setData(list);
+                Page<Dept> page = new PageImpl<Dept>(list, PageRequest.of(1, 1), list.size());
+                message.setData(page);
             }else {
                 Page<Dept> page = deptRepository.findAll(example,
                         PageRequest.of(pageIndex < 1 ? 0 : pageIndex - 1, pageSize));
@@ -62,6 +76,24 @@ public class ManageDeptServiceImpl implements ManageDeptService {
             return message;
         }catch (Exception e) {
             throw new CodeMessageException("查询失败！");
+        }
+    }
+
+    @Override
+    public Message childList(Integer id) {
+        try {
+            Dept deptDemo = new Dept().setParentId(id);
+            Example<Dept> example = Example.of(deptDemo,
+                    ExampleMatcher.matching().withMatcher("id",
+                            ExampleMatcher.GenericPropertyMatchers.exact()
+                    )
+            );
+            Message message = Message.success();
+            List<Dept> list = deptRepository.findAll(example);
+            message.setData(list);
+            return message;
+        }catch (Exception e) {
+            throw new CodeMessageException("获取失败！");
         }
     }
 
@@ -107,16 +139,16 @@ public class ManageDeptServiceImpl implements ManageDeptService {
                 BaseUtils.copyProperties(dept, deptTmp);
                 dept = deptTmp;
             }
-            if (dept.getParentId() != null) {
+            if (dept.getParentId() == null || dept.getParentId() == 0) {
                 dept.setParentId(0);
-                dept.setFullId("/0");
+                dept.setFullId("/0/");
             }else {
                 Optional<Dept> parent = deptRepository.findById(dept.getParentId());
                 if (!parent.isPresent()) {
                     throw new CodeMessageException("父级部门不存在！");
                 }
                 Dept tmp = parent.get();
-                dept.setFullId(tmp.getFullId().concat("/").concat(tmp.getDeptId().toString()));
+                dept.setFullId(tmp.getFullId().concat(tmp.getDeptId().toString()).concat("/"));
             }
             deptRepository.save(dept);
             return Message.success(prefix.concat("成功！"));

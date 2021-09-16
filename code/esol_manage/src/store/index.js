@@ -35,9 +35,9 @@ export default new Vuex.Store({
   actions: {},
   modules: {},
   plugins: [
-      createPersistedState({
-        key: "esol_state",
-        storage: window.sessionStorage
-      })
+    createPersistedState({
+      key: "esol_state",
+      storage: window.sessionStorage
+    })
   ]
 });
