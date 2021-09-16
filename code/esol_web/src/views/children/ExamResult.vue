@@ -90,7 +90,8 @@ export default {
     };
   },
   mounted() {
-    this.$store.state.nav.title = "考试结果";
+    // this.$store.state.nav.title = "考试结果";
+    this.$store.commit("updateNavTitle", "考试结果");
     this.result = this.$route.params;
     if (!this.result.testPaper) this.$router.go(-1);
   },

@@ -113,7 +113,8 @@ export default {
       }
     );
 
-    this.$store.state.nav.title = "考试";
+    // this.$store.state.nav.title = "考试";
+    this.$store.commit("updateNavTitle", "考试");
   },
   // 组件数据
   data() {

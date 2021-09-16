@@ -48,7 +48,8 @@ export default {
   name: "homeList",
   mounted() {
     let that = this;
-    this.$store.state.nav.title = "历史考试";
+    // this.$store.state.nav.title = "历史考试";
+    this.$store.commit("updateNavTitle", "历史考试");
     // 获取历史列表
     this.$get(this, "/exam/history", data => {
       that.listData = data.data.reverse();

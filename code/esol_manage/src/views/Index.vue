@@ -51,7 +51,8 @@ export default {
     };
   },
   mounted() {
-    this.$store.state.user = {};
+    // this.$store.state.user = {};
+    this.$store.commit("updateUser", {});
   },
   methods: {
     //登录逻辑
@@ -64,7 +65,8 @@ export default {
         "/login",
         this.$stringify(this.form),
         data => {
-          this.$store.state.user = data.data;
+          // this.$store.state.user = data.data;
+          this.$store.commit("updateUser", data.data);
           that.$router.replace("/home/user");
         },
         null,

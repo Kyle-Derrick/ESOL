@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 /**
@@ -26,7 +27,23 @@ export default new Vuex.Store({
       }
     }
   },
-  mutations: {},
+  mutations: {
+    updateUser(state, user) {
+      state.user = user;
+    },
+    updateHost(state, host) {
+      state.host = host;
+    },
+    updateNavTitle(state, title) {
+      state.nav.title = title;
+    }
+  },
   actions: {},
-  modules: {}
+  modules: {},
+  plugins: [
+    createPersistedState({
+      key: "esol_state",
+      storage: window.sessionStorage
+    })
+  ]
 });

@@ -58,7 +58,8 @@ export default {
     };
   },
   mounted() {
-    this.$store.state.user = {};
+    // this.$store.state.user = {};
+    this.$store.commit("updateUser", {});
   },
   methods: {
     //登录逻辑

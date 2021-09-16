@@ -28,7 +28,7 @@
       <el-aside width="200px">
         <el-menu
           router
-          :default-active="user.kind"
+          :default-active='user.kind === 1 ? "1" : "3"'
           class="el-menu-left"
           background-color="rgb(255,255,255,0)"
           text-color="#fff"

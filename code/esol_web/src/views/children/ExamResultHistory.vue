@@ -85,7 +85,8 @@ export default {
     };
   },
   mounted() {
-    this.$store.state.nav.title = "历史考试答卷";
+    // this.$store.state.nav.title = "历史考试答卷";
+    this.$store.commit("updateNavTitle", "历史考试答卷");
     this.listData = this.$route.params.data;
     this.title = this.$route.params.title;
   },

@@ -72,7 +72,8 @@ export default {
     if (!this.user.name) {
       let that = this;
       this.$get(this, "/user", data => {
-        that.$store.state.user = data.data;
+        // that.$store.state.user = data.data;
+        that.$store.commit("updateUser", data.data);
       });
     }
   },
