@@ -9,7 +9,7 @@
             v-model="param.title"
             size="medium"
             prefix-icon="el-icon-user"
-            placeholder="请输入用户名"
+            placeholder="请输入标题"
           >
           </el-input>
         </el-col>
@@ -110,10 +110,38 @@
             </el-select>
           </el-form-item>
           <el-form-item label="参考答案" label-width="120px">
-            <el-input
+            <!--            <el-input-->
+            <!--              v-model="datainfo.refAnswer"-->
+            <!--              placeholder="请输入"-->
+            <!--            ></el-input>-->
+            <el-radio-group
+              v-if="datainfo.questionKind === 1"
               v-model="datainfo.refAnswer"
-              placeholder="请输入"
-            ></el-input>
+            >
+              <el-radio label="A">A</el-radio>
+              <el-radio label="B">B</el-radio>
+              <el-radio label="C">C</el-radio>
+              <el-radio label="D">D</el-radio>
+            </el-radio-group>
+            <el-checkbox-group
+              v-else-if="datainfo.questionKind === 2"
+              v-model="datainfoRefAnswerArr"
+            >
+              <el-checkbox label="A">A</el-checkbox>
+              <el-checkbox label="B">B</el-checkbox>
+              <el-checkbox label="C">C</el-checkbox>
+              <el-checkbox label="D">D</el-checkbox>
+            </el-checkbox-group>
+            <el-switch
+              v-else
+              v-model="datainfo.refAnswer"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-value="T"
+              active-text="正确"
+              inactive-value="F"
+              inactive-text="错误"
+            />
           </el-form-item>
           <el-form-item label="解析" label-width="120px">
             <el-input
@@ -122,18 +150,32 @@
               placeholder="请输入"
             ></el-input>
           </el-form-item>
-          <el-form-item label="选项A" label-width="120px">
-            <el-input v-model="datainfo.itemA" placeholder="请输入"></el-input>
-          </el-form-item>
-          <el-form-item label="选项B" label-width="120px">
-            <el-input v-model="datainfo.itemB" placeholder="请输入"></el-input>
-          </el-form-item>
-          <el-form-item label="选项C" label-width="120px">
-            <el-input v-model="datainfo.itemC" placeholder="请输入"></el-input>
-          </el-form-item>
-          <el-form-item label="选项D" label-width="120px">
-            <el-input v-model="datainfo.itemD" placeholder="请输入"></el-input>
-          </el-form-item>
+          <template v-if="datainfo.questionKind !== 3">
+            <el-form-item label="选项A" label-width="120px">
+              <el-input
+                v-model="datainfo.itemA"
+                placeholder="请输入"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="选项B" label-width="120px">
+              <el-input
+                v-model="datainfo.itemB"
+                placeholder="请输入"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="选项C" label-width="120px">
+              <el-input
+                v-model="datainfo.itemC"
+                placeholder="请输入"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="选项D" label-width="120px">
+              <el-input
+                v-model="datainfo.itemD"
+                placeholder="请输入"
+              ></el-input>
+            </el-form-item>
+          </template>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -166,6 +208,26 @@ export default {
   mounted() {
     this.search();
   },
+  computed: {
+    datainfoRefAnswerArr: {
+      get() {
+        let A = "A",
+          B = "B",
+          C = "C",
+          D = "D";
+        let reg = /\[([ABCD], ?){0,3}[ABCD]\]/g;
+        if (reg.test(this.datainfo.refAnswer)) {
+          return eval(this.datainfo.refAnswer);
+        } else {
+          return [];
+        }
+      },
+      set(v) {
+        this.datainfo.refAnswer = JSON.stringify(v).replaceAll('"', "");
+        console.log(v, this.datainfo.refAnswer);
+      }
+    }
+  },
   methods: {
     handleKind(row, column, cellValue, index) {
       if (cellValue < 0 || cellValue > 3) {
@@ -197,8 +259,7 @@ export default {
         .catch(() => {});
     },
     editData(row) {
-      this.datainfo = row;
-      console.log(row);
+      this.datainfo = JSON.parse(JSON.stringify(row));
       this.dialogFormVisible = true;
     },
     delete_all() {
@@ -214,7 +275,9 @@ export default {
         .catch(() => {});
     },
     add() {
-      this.datainfo = {};
+      this.datainfo = {
+        questionKind: 1
+      };
       this.dialogFormVisible = true;
     },
     saveData() {

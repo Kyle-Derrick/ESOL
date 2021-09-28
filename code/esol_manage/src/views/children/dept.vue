@@ -240,7 +240,7 @@ export default {
         .catch(() => {});
     },
     editData(row) {
-      this.datainfo = row;
+      this.datainfo = JSON.parse(JSON.stringify(row));
       this.dialogFormVisible = true;
     },
     delete_all() {

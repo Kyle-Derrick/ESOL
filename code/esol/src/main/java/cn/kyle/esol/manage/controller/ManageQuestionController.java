@@ -26,7 +26,7 @@ public class ManageQuestionController {
 
     @PostMapping("/list")
     public Message list(@RequestParam(required = false) String title,
-                        @RequestParam(required = false) Integer kind,
+                        @RequestParam(required = false, defaultValue = "0") Integer kind,
                         @RequestParam(defaultValue = "1") Integer pageIndex,
                         @RequestParam(defaultValue = "20") Integer pageSize,
                         HttpSession session) {

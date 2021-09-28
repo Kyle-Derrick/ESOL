@@ -185,7 +185,7 @@ export default {
         .catch(() => {});
     },
     editUser(row) {
-      this.userinfo = row;
+      this.userinfo = JSON.parse(JSON.stringify(row));
       this.userinfo.deptId = row.dept.deptId;
       this.userinfo.selected_dept = row.dept.name;
       this.dialogFormVisible = true;

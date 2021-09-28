@@ -9,7 +9,7 @@
             v-model="param.title"
             size="medium"
             prefix-icon="el-icon-user"
-            placeholder="请输入用户名"
+            placeholder="请输入考试标题"
           >
           </el-input>
         </el-col>
@@ -172,55 +172,63 @@
               <el-option label="平均分" :value="2"> </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="总分" label-width="120px">
-            <el-input
-              v-model="datainfo.totalSorce"
-              type="number"
-              min="0"
-              step="1"
-              placeholder="请输入"
-            ></el-input>
-          </el-form-item>
           <el-form-item label="试卷生成规则" label-width="120px">
             <el-select
-              v-model="datainfo.questionRule"
-              size="medium"
-              placeholder="请选择"
+                    v-model="datainfo.questionRule"
+                    size="medium"
+                    placeholder="请选择"
             >
               <el-option label="预先生成" :value="1"> </el-option>
               <el-option label="随机生成" :value="2"> </el-option>
             </el-select>
+            <template v-if="datainfo.questionRule === 1">
+              <el-button @click="questionSelecterDialogVisible = true" style="margin-left: 20px">选题</el-button>
+            </template>
           </el-form-item>
-          <el-form-item label="单选题数" label-width="120px">
-            <el-input
-              v-model="datainfo.radioNum"
-              type="number"
-              min="0"
-              step="1"
-              placeholder="请输入"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="多选题数" label-width="120px">
-            <el-input
-              v-model="datainfo.mulitpleNum"
-              type="number"
-              min="0"
-              step="1"
-              placeholder="请输入"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="判断题数" label-width="120px">
-            <el-input
-              v-model="datainfo.judgeNum"
-              type="number"
-              min="0"
-              step="1"
-              placeholder="请输入"
-            ></el-input>
-          </el-form-item>
-          <!-- <el-form-item label="总题数" label-width="120px">
-				  <el-input v-model="totalNum" type="number" readonly placeholder="请输入"></el-input>
-				</el-form-item> -->
+          <template v-if="datainfo.questionRule === 2">
+            <el-form-item label="总分" label-width="120px">
+              <el-input
+                v-model="datainfo.totalSorce"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="请输入"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="单选题数" label-width="120px">
+              <el-input
+                v-model="datainfo.radioNum"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="请输入"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="多选题数" label-width="120px">
+              <el-input
+                v-model="datainfo.mulitpleNum"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="请输入"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="判断题数" label-width="120px">
+              <el-input
+                v-model="datainfo.judgeNum"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="请输入"
+              ></el-input>
+            </el-form-item>
+            <!-- <el-form-item label="总题数" label-width="120px">
+                    <el-input v-model="totalNum" type="number" readonly placeholder="请输入"></el-input>
+                  </el-form-item> -->
+          </template>
+          <el-dialog title="选题" :modal="false" width="80%" :visible.sync="questionSelecterDialogVisible">
+            <question-selecter></question-selecter>
+          </el-dialog>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -232,9 +240,10 @@
 </template>
 
 <script>
+import questionSelecter from "../../components/questionSelecter";
 export default {
   name: "exam",
-  components: {},
+  components: { questionSelecter },
   data() {
     return {
       listData: [],
@@ -248,7 +257,8 @@ export default {
         title: ""
       },
       dialogFormVisible: false,
-      datainfo: {}
+      datainfo: {},
+      questionSelecterDialogVisible: false
     };
   },
   mounted() {
@@ -291,8 +301,7 @@ export default {
         .catch(() => {});
     },
     editData(row) {
-      this.datainfo = row;
-      console.log(row);
+      this.datainfo = JSON.parse(JSON.stringify(row));
       this.dialogFormVisible = true;
     },
     delete_all() {

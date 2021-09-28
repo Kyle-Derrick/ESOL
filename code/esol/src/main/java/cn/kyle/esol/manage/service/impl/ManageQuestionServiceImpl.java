@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 import javax.servlet.http.HttpSession;
@@ -44,15 +45,22 @@ public class ManageQuestionServiceImpl implements ManageQuestionService {
                         Integer pageSize,
                         HttpSession session) {
         try {
-            ManageExmQuestionLib questionDemo = new ManageExmQuestionLib().setTitle(title)
-                    .setQuestionKind(kind);
+            ManageExmQuestionLib questionDemo = new ManageExmQuestionLib();
+
+            ExampleMatcher matcher = ExampleMatcher.matching();
+            if (!StringUtils.isEmpty(title)) {
+                questionDemo.setTitle(title);
+                matcher.withMatcher("title", ExampleMatcher.GenericPropertyMatchers.contains());
+            }
+            if (kind != 0) {
+                questionDemo.setQuestionKind(kind);
+                matcher.withMatcher("kind", ExampleMatcher.GenericPropertyMatchers.exact());
+            }
+
             Page<ManageExmQuestionLib> page = questionRepository.findAll(
-                    Example.of(questionDemo,
-                        ExampleMatcher.matching().withMatcher("title",
-                                ExampleMatcher.GenericPropertyMatchers.contains()
-                        )
-                    ),
-                    PageRequest.of(pageIndex < 1 ? 0 : pageIndex - 1, pageSize));
+                    Example.of(questionDemo, matcher),
+                    PageRequest.of(pageIndex < 1 ? 0 : pageIndex - 1, pageSize)
+            );
 
             return Message.success().setData(PageResponse.identify(page));
         }catch (Exception e) {

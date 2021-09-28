@@ -12,14 +12,15 @@ import java.util.List;
  */
 @Data
 public class PageResponse extends Page {
-    private Integer total;
+    private Long total;
     private List<?> list;
 
     public static PageResponse identify(org.springframework.data.domain.Page<?> page) {
         PageResponse pageResponse = new PageResponse();
         pageResponse.setPageIndex(page.getNumber());
         pageResponse.setPageSize(page.getSize());
-        pageResponse.setTotal(page.getTotalPages());
+//        pageResponse.setTotal(page.getTotalPages());
+        pageResponse.setTotal(page.getTotalElements());
         pageResponse.setList(page.getContent());
         return pageResponse;
     }
