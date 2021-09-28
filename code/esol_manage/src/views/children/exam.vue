@@ -119,7 +119,7 @@
       <!-- 添加或修改对话框 -->
       <!-- <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button> -->
 
-      <el-dialog title="考试信息" :visible.sync="dialogFormVisible">
+      <el-dialog title="考试信息" destroy-on-close :visible.sync="dialogFormVisible">
         <el-form :model="datainfo" style="text-align: left;">
           <el-form-item label="标题" label-width="120px">
             <el-input v-model="datainfo.title" placeholder="请输入"></el-input>
@@ -185,16 +185,16 @@
               <el-button @click="questionSelecterDialogVisible = true" style="margin-left: 20px">选题</el-button>
             </template>
           </el-form-item>
+          <el-form-item label="总分" label-width="120px">
+            <el-input
+                    v-model="datainfo.totalSorce"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="请输入"
+            ></el-input>
+          </el-form-item>
           <template v-if="datainfo.questionRule === 2">
-            <el-form-item label="总分" label-width="120px">
-              <el-input
-                v-model="datainfo.totalSorce"
-                type="number"
-                min="0"
-                step="1"
-                placeholder="请输入"
-              ></el-input>
-            </el-form-item>
             <el-form-item label="单选题数" label-width="120px">
               <el-input
                 v-model="datainfo.radioNum"
@@ -227,7 +227,10 @@
                   </el-form-item> -->
           </template>
           <el-dialog title="选题" :modal="false" width="80%" :visible.sync="questionSelecterDialogVisible">
-            <question-selecter></question-selecter>
+            <question-selecter v-model="datainfo.questionLibIds" style="height: 60vh"></question-selecter>
+            <span slot="footer" class="dialog-footer">
+              <el-button type="primary" @click="questionSelecterDialogVisible = false">确 定</el-button>
+            </span>
           </el-dialog>
         </el-form>
         <div slot="footer" class="dialog-footer">

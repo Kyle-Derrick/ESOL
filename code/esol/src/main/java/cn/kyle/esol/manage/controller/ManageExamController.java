@@ -2,7 +2,7 @@ package cn.kyle.esol.manage.controller;
 
 import cn.kyle.esol.base.model.dto.Message;
 import cn.kyle.esol.manage.service.ManageExamService;
-import cn.kyle.esol.repository.exam.model.po.ExmTestPaper;
+import cn.kyle.esol.repository.exam.model.po.ManageExamPaper;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +36,7 @@ public class ManageExamController {
         return examService.delete(ids.toJavaList(Integer.TYPE));
     }
     @PostMapping("/save")
-    public Message save(@RequestBody ExmTestPaper exam) {
+    public Message save(@RequestBody ManageExamPaper exam) {
         return examService.save(exam);
     }
 }

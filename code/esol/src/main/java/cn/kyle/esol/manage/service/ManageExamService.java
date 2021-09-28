@@ -3,6 +3,7 @@ package cn.kyle.esol.manage.service;
 import cn.kyle.esol.base.model.dto.Message;
 import cn.kyle.esol.manage.model.ManageExmQuestionLib;
 import cn.kyle.esol.repository.exam.model.po.ExmTestPaper;
+import cn.kyle.esol.repository.exam.model.po.ManageExamPaper;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -17,5 +18,5 @@ public interface ManageExamService {
                  Integer pageSize,
                  HttpSession session);
     Message delete(List<Integer> ids);
-    Message save(ExmTestPaper exam);
+    Message save(ManageExamPaper exam);
 }

@@ -1,15 +1,15 @@
 <!-- 主页面 -->
 <template>
   <el-container style="padding-top: 1rem; height: 100%; box-sizing: border-box">
-    <el-header height="80px">
+    <el-header height="36px">
       <!-- 搜索栏 -->
       <el-row style="text-align: left;" :gutter="20">
         <el-col :span="6">
           <el-input
-                  v-model="param.title"
-                  size="medium"
-                  prefix-icon="el-icon-user"
-                  placeholder="请输入标题"
+            v-model="param.title"
+            size="medium"
+            prefix-icon="el-icon-user"
+            placeholder="请输入标题"
           >
           </el-input>
         </el-col>
@@ -27,30 +27,26 @@
           </el-button>
         </el-col>
       </el-row>
-      <!-- 操作栏 -->
-      <div style="text-align: left;padding-top: 1rem;">
-        <el-button size="mini" type="success" @click="add()">添加</el-button>
-        <el-button size="mini" type="danger" @click="delete_all()"
-        >删除</el-button
-        >
-      </div>
     </el-header>
     <el-main>
       <!-- 表格 -->
       <el-table
-              :data="listData"
-              height="100%"
-              @selection-change="handleSelectionChange"
-              style="width: 100%;"
+        ref="questionTable"
+        :data="listData"
+        height="100%"
+        @selection-change="handleSelectionChange"
+        style="width: 100%;"
+        :row-key="handleReserve"
       >
-        <el-table-column type="selection" width="55"> </el-table-column>
+        <el-table-column type="selection" reserve-selection width="55">
+        </el-table-column>
         <el-table-column prop="title" label="题干" width="180">
         </el-table-column>
         <el-table-column
-                prop="questionKind"
-                label="题型"
-                :formatter="handleKind"
-                width="80"
+          prop="questionKind"
+          label="题型"
+          :formatter="handleKind"
+          width="80"
         >
         </el-table-column>
         <el-table-column prop="refAnswer" label="参考答案" width="80">
@@ -75,11 +71,11 @@
     <el-footer height="64px">
       <div class="page-block">
         <el-pagination
-                @current-change="handleCurrentChange"
-                :current-page="currentPage"
-                :page-size="pageSize"
-                layout="total, prev, pager, next, jumper"
-                :total="totalPage"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-size="pageSize"
+          layout="total, prev, pager, next, jumper"
+          :total="totalPage"
         >
         </el-pagination>
       </div>
@@ -87,19 +83,23 @@
       <!-- 添加或修改对话框 -->
       <!-- <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button> -->
 
-      <el-dialog :modal="false" title="题目信息" :visible.sync="dialogFormVisible">
+      <el-dialog
+        :modal="false"
+        title="题目信息"
+        :visible.sync="dialogFormVisible"
+      >
         <el-form :model="datainfo" style="text-align: left;">
           <el-form-item label="题干" label-width="120px">
             <el-input
-                    v-model="datainfo.title"
-                    placeholder="请输入题干"
+              v-model="datainfo.title"
+              placeholder="请输入题干"
             ></el-input>
           </el-form-item>
           <el-form-item label="题型" label-width="120px">
             <el-select
-                    v-model="datainfo.questionKind"
-                    size="medium"
-                    placeholder="请选择"
+              v-model="datainfo.questionKind"
+              size="medium"
+              placeholder="请选择"
             >
               <el-option label="单选题" :value="1"> </el-option>
               <el-option label="多选题" :value="2"> </el-option>
@@ -108,8 +108,8 @@
           </el-form-item>
           <el-form-item label="参考答案" label-width="120px">
             <el-radio-group
-                    v-if="datainfo.questionKind === 1"
-                    v-model="datainfo.refAnswer"
+              v-if="datainfo.questionKind === 1"
+              v-model="datainfo.refAnswer"
             >
               <el-radio label="A">A</el-radio>
               <el-radio label="B">B</el-radio>
@@ -117,8 +117,8 @@
               <el-radio label="D">D</el-radio>
             </el-radio-group>
             <el-checkbox-group
-                    v-else-if="datainfo.questionKind === 2"
-                    v-model="datainfoRefAnswerArr"
+              v-else-if="datainfo.questionKind === 2"
+              v-model="datainfoRefAnswerArr"
             >
               <el-checkbox label="A">A</el-checkbox>
               <el-checkbox label="B">B</el-checkbox>
@@ -126,46 +126,46 @@
               <el-checkbox label="D">D</el-checkbox>
             </el-checkbox-group>
             <el-switch
-                    v-else
-                    v-model="datainfo.refAnswer"
-                    active-color="#13ce66"
-                    inactive-color="#ff4949"
-                    active-value="T"
-                    active-text="正确"
-                    inactive-value="F"
-                    inactive-text="错误"
+              v-else
+              v-model="datainfo.refAnswer"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-value="T"
+              active-text="正确"
+              inactive-value="F"
+              inactive-text="错误"
             />
           </el-form-item>
           <el-form-item label="解析" label-width="120px">
             <el-input
-                    v-model="datainfo.analysis"
-                    type="textarea"
-                    placeholder="请输入"
+              v-model="datainfo.analysis"
+              type="textarea"
+              placeholder="请输入"
             ></el-input>
           </el-form-item>
           <template v-if="datainfo.questionKind !== 3">
             <el-form-item label="选项A" label-width="120px">
               <el-input
-                      v-model="datainfo.itemA"
-                      placeholder="请输入"
+                v-model="datainfo.itemA"
+                placeholder="请输入"
               ></el-input>
             </el-form-item>
             <el-form-item label="选项B" label-width="120px">
               <el-input
-                      v-model="datainfo.itemB"
-                      placeholder="请输入"
+                v-model="datainfo.itemB"
+                placeholder="请输入"
               ></el-input>
             </el-form-item>
             <el-form-item label="选项C" label-width="120px">
               <el-input
-                      v-model="datainfo.itemC"
-                      placeholder="请输入"
+                v-model="datainfo.itemC"
+                placeholder="请输入"
               ></el-input>
             </el-form-item>
             <el-form-item label="选项D" label-width="120px">
               <el-input
-                      v-model="datainfo.itemD"
-                      placeholder="请输入"
+                v-model="datainfo.itemD"
+                placeholder="请输入"
               ></el-input>
             </el-form-item>
           </template>
@@ -179,102 +179,104 @@
 </template>
 
 <script>
-  export default {
-    name: "deptSelecter",
-    model: {
-      prop: "value"
-    },
-    props: {
-      value: {
-        type: Number,
-        default: 0
-      },
-      selected_dept: {
-        type: String,
-        default: "全部"
+export default {
+  name: "questionSelecter",
+  model: {
+    prop: "value"
+  },
+  props: {
+    value: {
+      type: Array,
+      default: function() {
+        return [];
       }
+    }
+  },
+  data() {
+    return {
+      listData: [],
+      multipleSelection: [],
+      questionType: ["未知", "单选题", "多选题", "判断题"],
+      currentPage: 1,
+      pageSize: 10,
+      totalPage: 0,
+      param: {
+        title: ""
+      },
+      dialogFormVisible: false,
+      datainfo: {}
+    };
+  },
+  mounted() {
+    this.search();
+  },
+  computed: {
+    datainfoRefAnswerArr: {
+      get() {
+        let A = "A",
+          B = "B",
+          C = "C",
+          D = "D";
+        let reg = /\[([ABCD], ?){0,3}[ABCD]\]/g;
+        if (reg.test(this.datainfo.refAnswer)) {
+          return eval(this.datainfo.refAnswer);
+        } else {
+          return [];
+        }
+      }
+    }
+  },
+  methods: {
+    handleReserve(row) {
+      return row.questionLibId;
     },
-    data() {
-      return {
-        listData: [],
-        multipleSelection: [],
-        questionType: ["未知", "单选题", "多选题", "判断题"],
-        currentPage: 1,
-        pageSize: 10,
-        totalPage: 0,
-        param: {
-          title: ""
-        },
-        dialogFormVisible: false,
-        datainfo: {}
-      };
+    handleKind(row, column, cellValue) {
+      if (cellValue < 0 || cellValue > 3) {
+        return this.questionType[0];
+      }
+      return this.questionType[cellValue];
     },
-    mounted() {
+    handleCurrentChange(val) {
+      this.currentPage = val;
       this.search();
     },
-    computed: {
-      datainfoRefAnswerArr: {
-        get() {
-          let A = "A",
-                  B = "B",
-                  C = "C",
-                  D = "D";
-          let reg = /\[([ABCD], ?){0,3}[ABCD]\]/g;
-          if (reg.test(this.datainfo.refAnswer)) {
-            return eval(this.datainfo.refAnswer);
-          } else {
-            return [];
-          }
-        }
-      }
+    handleSelectionChange(val) {
+      let arr = [];
+      val.forEach(item => {
+        arr.push(item.questionLibId);
+      });
+      this.$emit("input", arr); //触发 input 事件，并传入新值
     },
-    methods: {
-      handleKind(row, column, cellValue) {
-        if (cellValue < 0 || cellValue > 3) {
-          return this.questionType[0];
+    editData(row) {
+      this.datainfo = JSON.parse(JSON.stringify(row));
+      this.dialogFormVisible = true;
+    },
+    search() {
+      let that = this;
+      this.$post(
+        this,
+        "/question/list",
+        this.$stringify({
+          title: this.param.title,
+          kind: this.param.kind,
+          pageIndex: this.currentPage,
+          pageSize: this.pageSize
+        }),
+        data => {
+          that.currentPage = data.data.pageIndex + 1;
+          that.pageSize = data.data.pageSize;
+          that.totalPage = data.data.total;
+          that.listData = data.data.list;
+
         }
-        return this.questionType[cellValue];
-      },
-      handleCurrentChange(val) {
-        this.currentPage = val;
-        this.search();
-      },
-      handleSelectionChange(val) {
-        let arr = [];
-        val.forEach(item => {
-          arr.push(item.questionLibId);
-        });
-        this.multipleSelection = arr;
-      },
-      editData(row) {
-        this.datainfo = JSON.parse(JSON.stringify(row));
-        this.dialogFormVisible = true;
-      },
-      search() {
-        let that = this;
-        this.$post(
-                this,
-                "/question/list",
-                this.$stringify({
-                  title: this.param.title,
-                  kind: this.param.kind,
-                  pageIndex: this.currentPage,
-                  pageSize: this.pageSize
-                }),
-                data => {
-                  that.currentPage = data.data.pageIndex + 1;
-                  that.pageSize = data.data.pageSize;
-                  that.totalPage = data.data.total;
-                  that.listData = data.data.list;
-                }
-        );
-      },
+      );
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
-  .page-block {
-    padding-top: 2rem;
-  }
+.page-block {
+  padding-top: 2rem;
+}
 </style>
