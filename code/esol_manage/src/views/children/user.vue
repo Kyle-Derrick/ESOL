@@ -58,7 +58,7 @@
         </el-table-column>
         <el-table-column prop="dept" :formatter="deptHandle" label="部门">
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" fixed="right" width="180">
           <template slot-scope="scope">
             <el-button size="mini" @click="editUser(scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" @click="deleteUser(scope.row)"
