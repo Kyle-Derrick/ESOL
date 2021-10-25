@@ -11,7 +11,7 @@
  Target Server Version : 100210
  File Encoding         : 65001
 
- Date: 03/01/2021 15:54:32
+ Date: 25/10/2021 23:04:43
 */
 
 SET NAMES utf8mb4;
@@ -79,7 +79,7 @@ INSERT INTO `exm_question_lib` VALUES (2000, 1, '实际事物是具体的，而�
 INSERT INTO `exm_question_lib` VALUES (2001, 1, '____始终是中国共产党人认识世界和改造世界的根本要求，是我们党的基本方法、工作方法和领导方法，是党带领人民推动中国革命、建设、改革事业不断取得胜利的重要法宝。', 'A、全心全意为人民服务', 'B、实事求是', 'C、从国情出发', 'D、在实践中检验和发展真理', 'B', '暂无', 1);
 INSERT INTO `exm_question_lib` VALUES (2002, 1, '_____是马克思主义中国化两大理论成果的哲学基础，蕴含着丰富的方法论原则。它渗透于党的全部理论和实际工作中，是具有中国共产党人特色的马克思主义立场、观点和方法。', 'A、实事求是', 'B、从实际出发', 'C、理论联系实际', 'D、实践是检验真理的标准', 'A', '暂无', 1);
 INSERT INTO `exm_question_lib` VALUES (2003, 1, '______战略布局是党坚持和发展中国特色社会主义的新实践新成果。', 'A、全面改革', 'B、全面建设小康社会', 'C、“四个全面”', 'D、全面从严治党', 'C', '暂无', 1);
-INSERT INTO `exm_question_lib` VALUES (2004, 2, '实事求是是马克思主义中国化理论成果的精髓，主要体现在________。', 'A、实事求是贯穿于马克思主义中国化两大理论成果形成和发展的全过程', 'B、实事求是体现于马克思主义中国化两大理论成果基本内容的各个方面', 'C、实事求是渗透于马克思主义中国化两大理论成果的方法论原则', 'D、实事求是是马克思主义中国化的活灵魂', '[A, B, C]', '暂无', 1);
+INSERT INTO `exm_question_lib` VALUES (2004, 2, '实事求是是马克思主义中国化理论成果的精髓，主要体现在________。', 'A、实事求是贯穿于马克思主义中国化两大理论成果形成和发展的全过程', 'B、实事求是体现于马克思主义中国化两大理论成果基本内容的各个方面', 'C、实事求是渗透于马克思主义中国化两大理论成果的方法论原则', 'D、实事求是是马克思主义中国化的活灵魂', '[A,B,C]', '暂无', 1);
 INSERT INTO `exm_question_lib` VALUES (2005, 2, '毛泽东思想、中国特色社会主义理论体系之所以是中国化的马克思主义，是因为______。', 'A、它们体现了马克思列宁主义的基本原理', 'B、它们反映了近代中国的社会发展要求', 'C、它们揭示了中国革命的特殊规律', 'D、它们包含了中华民族的优秀思想', '[A, D]', '暂无', 1);
 INSERT INTO `exm_question_lib` VALUES (2006, 2, '毛泽东思想的科学含义包括________。', 'A、马克思列宁主义在中国的运用和发展', 'B、毛泽东个人的思想', 'C、是被实践证明了的关于中国革命和建设的正确的理论原则和经验总结', 'D、中国共产党集体智慧的结晶', '[A, C, D]', '暂无', 1);
 INSERT INTO `exm_question_lib` VALUES (2007, 2, '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', 1);
@@ -1008,7 +1008,7 @@ CREATE TABLE `exm_result`  (
   INDEX `FK_fk_user_reslt`(`user_id`) USING BTREE,
   CONSTRAINT `FK_fk_test_paper_reuslt` FOREIGN KEY (`test_paper_id`) REFERENCES `exm_test_paper` (`test_paper_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_fk_user_reslt` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of exm_result
@@ -1088,6 +1088,13 @@ INSERT INTO `exm_result` VALUES (89, 1, 4, 10, '2020-12-31', 2, 1, 2, 1);
 INSERT INTO `exm_result` VALUES (90, 1, 4, 42, '2020-12-31', 2, 1, 2, 1);
 INSERT INTO `exm_result` VALUES (91, 15, 4, 22, '2020-12-31', 2, 1, 2, 1);
 INSERT INTO `exm_result` VALUES (92, 15, 5, 13, '2020-12-31', 0, 0, 5, 1);
+INSERT INTO `exm_result` VALUES (93, 1, 2, 300, '2021-09-08', 0, 0, 5, 1);
+INSERT INTO `exm_result` VALUES (94, 1, 2, 300, '2021-09-08', 0, 0, 5, 1);
+INSERT INTO `exm_result` VALUES (95, 1, 2, 300, '2021-09-08', 0, 0, 5, 1);
+INSERT INTO `exm_result` VALUES (96, 1, 2, 230, '2021-09-08', 0, 0, 5, 1);
+INSERT INTO `exm_result` VALUES (97, 1, 2, 26, '2021-09-13', 1, 1, 4, 1);
+INSERT INTO `exm_result` VALUES (98, 1, 9, 20, '2021-09-28', 1, 1, 8, 1);
+INSERT INTO `exm_result` VALUES (99, 1, 9, 67, '2021-09-30', 3, 3, 6, 1);
 
 -- ----------------------------
 -- Table structure for exm_result_question
@@ -1110,7 +1117,7 @@ CREATE TABLE `exm_result_question`  (
   PRIMARY KEY (`result_question_id`) USING BTREE,
   INDEX `FK_fk_result_question`(`result_id`) USING BTREE,
   CONSTRAINT `FK_fk_result_question` FOREIGN KEY (`result_id`) REFERENCES `exm_result` (`result_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 445 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 490 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of exm_result_question
@@ -1490,6 +1497,51 @@ INSERT INTO `exm_result_question` VALUES (441, 92, 2417, '1', '中共十八届�
 INSERT INTO `exm_result_question` VALUES (442, 92, 2491, '2', '建设社会主义文化强国，需要___________。', 'A、培养高度的文化自觉自信', 'B、大力发展文化事业和文化产业', 'C、加快文化体制改革', 'D、提高国民生产总值', '[A, B, C]', '暂无', '[A]', 1);
 INSERT INTO `exm_result_question` VALUES (443, 92, 2243, '2', '下列观点和倾向，属于资产阶级自由化表现的有_______。', 'A、反对共产党的领导', 'B、否定社会主义制度', 'C、主张资本主义制度', 'D、主张全盘西化', '[A, B, C, D]', '暂无', '[B, C]', 1);
 INSERT INTO `exm_result_question` VALUES (444, 92, 2700, '3', '1997年7月1日，澳门正式回归祖国的怀抱。', 'A、一个中国是核心', 'B、“一国”是实现“两制”的前提和基础', 'C、“两制”从属和派生于“一国”，并统一于“一国”之内', 'D、高度自治', 'F', '暂无', 'T', 1);
+INSERT INTO `exm_result_question` VALUES (445, 93, 1963, '1', '“四个全面”战略布局是一个整体，其中，____是战略目标。', 'A、基本实现现代化，达到中等发达国家水平', 'B、全面依法治国', 'C、全面从严治党', 'D、全面建成小康社会', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (446, 93, 1966, '1', '马克思主义中国化的两个目标是______。　　', 'A、将马克思主义基本原理同中国具体实际和时代特征结合起来，坚持和发展马克思主义；不断形成具有中国特色的马克思主义理论成果的过程　　', 'B、“解决中国问题”和“创造些新的东西”　　', 'C、反对教条主义和经验主义，坚持中国共产的领导　　', 'D、坚持调查研究和走群众路线，在实践中理论创新', 'A', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (447, 93, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (448, 93, 2026, '3', '邓小平理论第一次比较系统地初步回答了在中国这样的经济文化比较落后的国家如何建设社会主义、如何巩固和发展社会主义的一系列基本问题，是中国特色社会主义理论体系的开创制作。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (449, 93, 2032, '3', '毛泽东思想不仅过去引导我们取得革命胜利，现在和将来还应该是中国党和国家的宝贵财富。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (450, 94, 1963, '1', '“四个全面”战略布局是一个整体，其中，____是战略目标。', 'A、基本实现现代化，达到中等发达国家水平', 'B、全面依法治国', 'C、全面从严治党', 'D、全面建成小康社会', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (451, 94, 1966, '1', '马克思主义中国化的两个目标是______。　　', 'A、将马克思主义基本原理同中国具体实际和时代特征结合起来，坚持和发展马克思主义；不断形成具有中国特色的马克思主义理论成果的过程　　', 'B、“解决中国问题”和“创造些新的东西”　　', 'C、反对教条主义和经验主义，坚持中国共产的领导　　', 'D、坚持调查研究和走群众路线，在实践中理论创新', 'A', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (452, 94, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (453, 94, 2026, '3', '邓小平理论第一次比较系统地初步回答了在中国这样的经济文化比较落后的国家如何建设社会主义、如何巩固和发展社会主义的一系列基本问题，是中国特色社会主义理论体系的开创制作。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (454, 94, 2032, '3', '毛泽东思想不仅过去引导我们取得革命胜利，现在和将来还应该是中国党和国家的宝贵财富。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (455, 95, 1963, '1', '“四个全面”战略布局是一个整体，其中，____是战略目标。', 'A、基本实现现代化，达到中等发达国家水平', 'B、全面依法治国', 'C、全面从严治党', 'D、全面建成小康社会', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (456, 95, 1966, '1', '马克思主义中国化的两个目标是______。　　', 'A、将马克思主义基本原理同中国具体实际和时代特征结合起来，坚持和发展马克思主义；不断形成具有中国特色的马克思主义理论成果的过程　　', 'B、“解决中国问题”和“创造些新的东西”　　', 'C、反对教条主义和经验主义，坚持中国共产的领导　　', 'D、坚持调查研究和走群众路线，在实践中理论创新', 'A', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (457, 95, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (458, 95, 2026, '3', '邓小平理论第一次比较系统地初步回答了在中国这样的经济文化比较落后的国家如何建设社会主义、如何巩固和发展社会主义的一系列基本问题，是中国特色社会主义理论体系的开创制作。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (459, 95, 2032, '3', '毛泽东思想不仅过去引导我们取得革命胜利，现在和将来还应该是中国党和国家的宝贵财富。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (460, 96, 1963, '1', '“四个全面”战略布局是一个整体，其中，____是战略目标。', 'A、基本实现现代化，达到中等发达国家水平', 'B、全面依法治国', 'C、全面从严治党', 'D、全面建成小康社会', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (461, 96, 1966, '1', '马克思主义中国化的两个目标是______。　　', 'A、将马克思主义基本原理同中国具体实际和时代特征结合起来，坚持和发展马克思主义；不断形成具有中国特色的马克思主义理论成果的过程　　', 'B、“解决中国问题”和“创造些新的东西”　　', 'C、反对教条主义和经验主义，坚持中国共产的领导　　', 'D、坚持调查研究和走群众路线，在实践中理论创新', 'A', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (462, 96, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (463, 96, 2026, '3', '邓小平理论第一次比较系统地初步回答了在中国这样的经济文化比较落后的国家如何建设社会主义、如何巩固和发展社会主义的一系列基本问题，是中国特色社会主义理论体系的开创制作。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (464, 96, 2032, '3', '毛泽东思想不仅过去引导我们取得革命胜利，现在和将来还应该是中国党和国家的宝贵财富。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (465, 97, 1963, '1', '“四个全面”战略布局是一个整体，其中，____是战略目标。', 'A、基本实现现代化，达到中等发达国家水平', 'B、全面依法治国', 'C、全面从严治党', 'D、全面建成小康社会', 'D', '暂无', 'A', 1);
+INSERT INTO `exm_result_question` VALUES (466, 97, 1966, '1', '马克思主义中国化的两个目标是______。　　', 'A、将马克思主义基本原理同中国具体实际和时代特征结合起来，坚持和发展马克思主义；不断形成具有中国特色的马克思主义理论成果的过程　　', 'B、“解决中国问题”和“创造些新的东西”　　', 'C、反对教条主义和经验主义，坚持中国共产的领导　　', 'D、坚持调查研究和走群众路线，在实践中理论创新', 'A', '暂无', 'C', 1);
+INSERT INTO `exm_result_question` VALUES (467, 97, 2007, '2', '以下属于邓小平南方谈话的包括______。', 'A、社会主义本质问题', 'B、社会主义与市场经济的关系问题', 'C、“三个有利于”标准等一系列重大问题', 'D、对当今时代特点和总体国际形势作出了新的科学判断', '[A, B, C]', '暂无', '[C]', 1);
+INSERT INTO `exm_result_question` VALUES (468, 97, 2026, '3', '邓小平理论第一次比较系统地初步回答了在中国这样的经济文化比较落后的国家如何建设社会主义、如何巩固和发展社会主义的一系列基本问题，是中国特色社会主义理论体系的开创制作。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', 'F', 1);
+INSERT INTO `exm_result_question` VALUES (469, 97, 2032, '3', '毛泽东思想不仅过去引导我们取得革命胜利，现在和将来还应该是中国党和国家的宝贵财富。', 'A、马克思列宁主义不适应时代发展新要求，需要我们用毛泽东思想和中国特色社会主义理论体系取代', 'B、中国特色社会主义理论体系在新的历史条件下进一步丰富和发展了毛泽东思想', 'C、毛泽东思想和中国特色社会主义理论体系都是马克思列宁主义在中国的运用和发展', 'D、毛泽东思想是中国特色社会主义理论体系的重要思想渊源', 'T', '暂无', 'T', 1);
+INSERT INTO `exm_result_question` VALUES (470, 98, 1963, '1', '“四个全面”战略布局是一个整体，其中，____是战略目标。', 'A、基本实现现代化，达到中等发达国家水平', 'B、全面依法治国', 'C、全面从严治党', 'D、全面建成小康社会', 'D', '暂无', 'A', 1);
+INSERT INTO `exm_result_question` VALUES (471, 98, 1964, '1', '毛泽东指出，马克思主义一定要“和民族的特点结合，经过一定的民族形式”表现出来。表明____。', 'A、马克思主义一定要和中国传统文化结合，才能求得发展', 'B、马克思主义指导中国革命、建设和改革的实践', 'C、马克思主义指导民族革命和建设事业', 'D、将马克思主义与中国优秀文化相结合，使马克思主义根植于中国优秀文化的土壤之中得以生长和繁荣', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (472, 98, 1965, '1', '中国共产党找到了马克思主义这个崭新的思想武器，并不意味着就能够自然而然地解决中国革命所面临的问题。还有一个____。', 'A、马克思主义理论适合西方国家，未必适合东方国家', 'B、马克思主义理论需要在实践中修正', 'C、马克思主义产生于发达资本主义国家，不适合小农经济国家', 'D、如何实现马克思主义中国化的问题', 'D', '暂无', 'C', 1);
+INSERT INTO `exm_result_question` VALUES (473, 98, 1966, '1', '马克思主义中国化的两个目标是______。　　', 'A、将马克思主义基本原理同中国具体实际和时代特征结合起来，坚持和发展马克思主义；不断形成具有中国特色的马克思主义理论成果的过程　　', 'B、“解决中国问题”和“创造些新的东西”　　', 'C、反对教条主义和经验主义，坚持中国共产的领导　　', 'D、坚持调查研究和走群众路线，在实践中理论创新', 'A', '暂无', 'D', 1);
+INSERT INTO `exm_result_question` VALUES (474, 98, 1967, '1', '毛泽东在1938年党的六届六中全会上作了《论新阶段》的政治报告中，党首次明确提出了____重大命题,对后来党的理论发展和事业产生了深远的影响。', 'A、学习马克思主义', 'B、学习十月革命经验', 'C、马克思主义中国化', 'D、建设社会主义', 'C', '暂无', 'B', 1);
+INSERT INTO `exm_result_question` VALUES (475, 98, 1968, '1', '中国特色社会主义理论体系包括____。', 'A、毛泽东思想、邓小平理论和“三个代表”重要思想', 'B、毛泽东思想、邓小平理论、“三个代表”重要思想和科学发展观', 'C、邓小平理论、“三个代表”重要思想和科学发展观', 'D、邓小平理论和“三个代表”重要思想', 'C', '暂无', 'D', 1);
+INSERT INTO `exm_result_question` VALUES (476, 98, 1969, '1', '党的十八大以来，______是中国特色社会主义理论体系的最新成果。', 'A、毛泽东思想', 'B、邓小平理论', 'C、科学发展观', 'D、习近平总书记发表一系列重要讲话', 'D', '暂无', 'B', 1);
+INSERT INTO `exm_result_question` VALUES (477, 98, 1970, '1', '毛泽东思想和中国特色社会主义理论体系共同理论基础是____。', 'A、中国革命和建设所面对的现实状况', 'B、世界格局的演变，不断出现新情况和新问题', 'C、马克思列宁主义', 'D、苏联革命和社会主义建设经验', 'C', '暂无', 'B', 1);
+INSERT INTO `exm_result_question` VALUES (478, 98, 1971, '1', '1997年召开的党的十五大正式提出____概念，并作为党的指导思想写入党章。', 'A、科学发展观', 'B、群众路线', 'C、三个代表重要思想', 'D、邓小平理论', 'D', '暂无', 'C', 1);
+INSERT INTO `exm_result_question` VALUES (479, 98, 1972, '1', '2002年召开的党的十六大把____写进了党章。', 'A、习近平总书记系列重要讲话', 'B、科学发展观', 'C、三个代表重要思想', 'D、社会主义市场经济理论', 'C', '暂无', 'C', 1);
+INSERT INTO `exm_result_question` VALUES (480, 99, 1963, '1', '“四个全面”战略布局是一个整体，其中，____是战略目标。', 'A、基本实现现代化，达到中等发达国家水平', 'B、全面依法治国', 'C、全面从严治党', 'D、全面建成小康社会', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (481, 99, 1964, '1', '毛泽东指出，马克思主义一定要“和民族的特点结合，经过一定的民族形式”表现出来。表明____。', 'A、马克思主义一定要和中国传统文化结合，才能求得发展', 'B、马克思主义指导中国革命、建设和改革的实践', 'C、马克思主义指导民族革命和建设事业', 'D、将马克思主义与中国优秀文化相结合，使马克思主义根植于中国优秀文化的土壤之中得以生长和繁荣', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (482, 99, 1965, '1', '中国共产党找到了马克思主义这个崭新的思想武器，并不意味着就能够自然而然地解决中国革命所面临的问题。还有一个____。', 'A、马克思主义理论适合西方国家，未必适合东方国家', 'B、马克思主义理论需要在实践中修正', 'C、马克思主义产生于发达资本主义国家，不适合小农经济国家', 'D、如何实现马克思主义中国化的问题', 'D', '暂无', 'D', 1);
+INSERT INTO `exm_result_question` VALUES (483, 99, 1966, '1', '马克思主义中国化的两个目标是______。　　', 'A、将马克思主义基本原理同中国具体实际和时代特征结合起来，坚持和发展马克思主义；不断形成具有中国特色的马克思主义理论成果的过程　　', 'B、“解决中国问题”和“创造些新的东西”　　', 'C、反对教条主义和经验主义，坚持中国共产的领导　　', 'D、坚持调查研究和走群众路线，在实践中理论创新', 'A', '暂无', 'A', 1);
+INSERT INTO `exm_result_question` VALUES (484, 99, 1967, '1', '毛泽东在1938年党的六届六中全会上作了《论新阶段》的政治报告中，党首次明确提出了____重大命题,对后来党的理论发展和事业产生了深远的影响。', 'A、学习马克思主义', 'B、学习十月革命经验', 'C、马克思主义中国化', 'D、建设社会主义', 'C', '暂无', 'D', 1);
+INSERT INTO `exm_result_question` VALUES (485, 99, 1968, '1', '中国特色社会主义理论体系包括____。', 'A、毛泽东思想、邓小平理论和“三个代表”重要思想', 'B、毛泽东思想、邓小平理论、“三个代表”重要思想和科学发展观', 'C、邓小平理论、“三个代表”重要思想和科学发展观', 'D、邓小平理论和“三个代表”重要思想', 'C', '暂无', 'B', 1);
+INSERT INTO `exm_result_question` VALUES (486, 99, 1969, '1', '党的十八大以来，______是中国特色社会主义理论体系的最新成果。', 'A、毛泽东思想', 'B、邓小平理论', 'C、科学发展观', 'D、习近平总书记发表一系列重要讲话', 'D', '暂无', NULL, 1);
+INSERT INTO `exm_result_question` VALUES (487, 99, 1970, '1', '毛泽东思想和中国特色社会主义理论体系共同理论基础是____。', 'A、中国革命和建设所面对的现实状况', 'B、世界格局的演变，不断出现新情况和新问题', 'C、马克思列宁主义', 'D、苏联革命和社会主义建设经验', 'C', '暂无', 'B', 1);
+INSERT INTO `exm_result_question` VALUES (488, 99, 1971, '1', '1997年召开的党的十五大正式提出____概念，并作为党的指导思想写入党章。', 'A、科学发展观', 'B、群众路线', 'C、三个代表重要思想', 'D、邓小平理论', 'D', '暂无', 'B', 1);
+INSERT INTO `exm_result_question` VALUES (489, 99, 1972, '1', '2002年召开的党的十六大把____写进了党章。', 'A、习近平总书记系列重要讲话', 'B、科学发展观', 'C、三个代表重要思想', 'D、社会主义市场经济理论', 'C', '暂无', 'C', 1);
 
 -- ----------------------------
 -- Table structure for exm_test_paper
@@ -1511,16 +1563,17 @@ CREATE TABLE `exm_test_paper`  (
   `total_num` int(11) NULL DEFAULT NULL,
   `version` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`test_paper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of exm_test_paper
 -- ----------------------------
 INSERT INTO `exm_test_paper` VALUES (1, '第一次考试', '2019-11-02', '2019-11-29', 10, 3, 1, 10, 2, 2, 1, 2, 5, 1);
-INSERT INTO `exm_test_paper` VALUES (2, '第二次考试', '2019-11-27', '2019-12-06', 5, 99, 1, 5, 1, 2, 1, 2, 5, 1);
+INSERT INTO `exm_test_paper` VALUES (2, '第二次考试', '2019-11-27', '2029-12-29', 5, 99, 1, 5, 1, 2, 1, 2, 5, 1);
 INSERT INTO `exm_test_paper` VALUES (3, '第三次考试', '2019-12-28', '2019-12-31', 12, 2, 2, 10, 2, 2, 2, 1, 5, 1);
 INSERT INTO `exm_test_paper` VALUES (4, '第四次考试', '2019-11-01', '2021-01-05', 6, 3, 1, 6, 1, 1, 1, 1, 3, 1);
-INSERT INTO `exm_test_paper` VALUES (5, '第一次测试考试', '2020-12-23', '2021-01-10', 10, 2, 1, 10, 2, 2, 2, 1, 5, NULL);
+INSERT INTO `exm_test_paper` VALUES (5, '第一次测试考试', '2020-12-23', '2021-01-10', 10, 2, 1, 10, 2, 2, 2, 1, 5, 1);
+INSERT INTO `exm_test_paper` VALUES (9, '小测试', '2021-09-22', '2021-10-09', 10, 2, 1, 10, 1, 10, 0, 0, 9, 1);
 
 -- ----------------------------
 -- Table structure for exm_test_question
@@ -1537,7 +1590,7 @@ CREATE TABLE `exm_test_question`  (
   INDEX `FK_fk_test_paper_question`(`test_paper_id`) USING BTREE,
   CONSTRAINT `FK_fk_question_lib_question` FOREIGN KEY (`question_lib_id`) REFERENCES `exm_question_lib` (`question_lib_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_fk_test_paper_question` FOREIGN KEY (`test_paper_id`) REFERENCES `exm_test_paper` (`test_paper_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of exm_test_question
@@ -1552,6 +1605,16 @@ INSERT INTO `exm_test_question` VALUES (7, 2000, 4, 2, 1);
 INSERT INTO `exm_test_question` VALUES (8, 2006, 4, 3, 1);
 INSERT INTO `exm_test_question` VALUES (9, 2007, 4, 4, 1);
 INSERT INTO `exm_test_question` VALUES (10, 2038, 4, 5, 1);
+INSERT INTO `exm_test_question` VALUES (51, 1963, 9, 1, 1);
+INSERT INTO `exm_test_question` VALUES (52, 1964, 9, 2, 1);
+INSERT INTO `exm_test_question` VALUES (53, 1965, 9, 3, 1);
+INSERT INTO `exm_test_question` VALUES (54, 1966, 9, 4, 1);
+INSERT INTO `exm_test_question` VALUES (55, 1967, 9, 5, 1);
+INSERT INTO `exm_test_question` VALUES (56, 1968, 9, 6, 1);
+INSERT INTO `exm_test_question` VALUES (57, 1969, 9, 7, 1);
+INSERT INTO `exm_test_question` VALUES (58, 1970, 9, 8, 1);
+INSERT INTO `exm_test_question` VALUES (59, 1971, 9, 9, 1);
+INSERT INTO `exm_test_question` VALUES (60, 1972, 9, 10, 1);
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -1566,17 +1629,17 @@ CREATE TABLE `sys_dept`  (
   `full_id` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `version` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`dept_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dept
 -- ----------------------------
-INSERT INTO `sys_dept` VALUES (1, '计算机工程学院', 'adam', '学院', 0, '/0', 1);
-INSERT INTO `sys_dept` VALUES (2, '软件工程', 'drsn', '专业', 1, '/0/1', 1);
-INSERT INTO `sys_dept` VALUES (3, '20级软件专升本1班', 'bob', '班级', 2, '/0/1/2', 1);
-INSERT INTO `sys_dept` VALUES (4, '20级软件专升本2班', '2333', '班级', 2, '/0/1/2', 1);
-INSERT INTO `sys_dept` VALUES (5, '18级软件1班', 'DaZhuang', '班级', 2, '/0/1/2', 1);
-INSERT INTO `sys_dept` VALUES (12, '数字艺术媒体学院', 'kyle', '学院', 0, '/0', 1);
+INSERT INTO `sys_dept` VALUES (1, '计算机工程学院', 'adam', '学院', 0, '/0/', 1);
+INSERT INTO `sys_dept` VALUES (2, '软件工程', 'drsn', '专业', 1, '/0/1/', 1);
+INSERT INTO `sys_dept` VALUES (3, '20级软件专升本1班', 'bob', '班级', 2, '/0/1/2/', 1);
+INSERT INTO `sys_dept` VALUES (4, '20级软件专升本2班', '2333', '班级', 2, '/0/1/2/', 1);
+INSERT INTO `sys_dept` VALUES (5, '18级软件1班', 'DaZhuang', '班级', 2, '/0/1/2/', 1);
+INSERT INTO `sys_dept` VALUES (12, '数字艺术媒体学院', 'kyle', '学院', 0, '/0/', 1);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1602,10 +1665,10 @@ CREATE TABLE `sys_user`  (
 INSERT INTO `sys_user` VALUES (1, 1, 'adam', 'adam', '202cb962ac59075b964b07152d234b70', 1, 1);
 INSERT INTO `sys_user` VALUES (2, 2, 'drsn', 'drsn', 'e10adc3949ba59abbe56e057f20f883e', 2, 1);
 INSERT INTO `sys_user` VALUES (3, 3, 'bob', '鲍勃', 'e10adc3949ba59abbe56e057f20f883e', 2, 1);
-INSERT INTO `sys_user` VALUES (4, 4, 'chunzhang', '村长', 'e10adc3949ba59abbe56e057f20f883e', 2, 1);
+INSERT INTO `sys_user` VALUES (4, 4, 'chunzhang', '村长', 'c56d0e9a7ccec67b4ea131655038d604', 2, 1);
 INSERT INTO `sys_user` VALUES (5, 5, 'DaZhuang', '大壮', 'e10adc3949ba59abbe56e057f20f883e', 2, 1);
-INSERT INTO `sys_user` VALUES (6, 2, 'xiaoer1', '小二', '14e1b600b1fd579f47433b88e8d85291', 2, 1);
+INSERT INTO `sys_user` VALUES (6, 2, 'xiaoer1', '小二', 'c56d0e9a7ccec67b4ea131655038d604', 2, 1);
 INSERT INTO `sys_user` VALUES (15, 2, 'qwer', '卧槽', '202cb962ac59075b964b07152d234b70', 3, 1);
-INSERT INTO `sys_user` VALUES (16, 3, 'qwerqwer', 'fff', '962012d09b8170d912f0669f6d7d9d07', 2, 1);
+INSERT INTO `sys_user` VALUES (16, 12, 'qwerqwer', 'fff', '7e2eb8c383ecf2dd781c581b03730012', 2, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
